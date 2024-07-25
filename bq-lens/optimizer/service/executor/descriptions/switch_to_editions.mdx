@@ -1,0 +1,8 @@
+To reduce costs, consider switching from on-demand to a capacity-based analysis pricing model.
+
+##### How do we estimate savings?
+
+We collect the total slot hours and scanned data for all on-demand BigQuery jobs from the
+last 90 days in projects not covered by reservations. Based on this data, we apply the
+BigQuery editions pricing models to calculate potential savings. If the estimated savings
+are equal to or greater than $100 per year, we recommend switching to BigQuery editions.

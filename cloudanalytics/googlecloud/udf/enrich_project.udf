@@ -1,0 +1,15 @@
+CREATE OR REPLACE FUNCTION `doitintl-cmp-gcp-data.gcp_billing.UDF_ENRICH_PROJECT_V1BETA`(project STRUCT<id STRING, number STRING, name STRING, labels ARRAY<STRUCT<key STRING, value STRING>>, ancestry_numbers STRING>, ancestry_mapping ARRAY<STRUCT<id STRING, name STRING>>) RETURNS STRUCT<id STRING, number STRING, name STRING, labels ARRAY<STRUCT<key STRING, value STRING>>, ancestry_numbers STRING, ancestry_names STRING> LANGUAGE js AS """
+  if (project.ancestry_numbers) {
+    project.ancestry_names = project.ancestry_numbers
+      .split("/")
+      .map((id) => {
+        const el = ancestry_mapping.find((el) => el.id === id);
+        return el ? el.name : id;
+      })
+      .join("/");
+  } else {
+    project.ancestry_names = null;
+  }
+
+  return project;
+""";

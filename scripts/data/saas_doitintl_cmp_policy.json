@@ -1,0 +1,61 @@
+{
+  "Statement": [
+    {
+      "Sid": "Organizations",
+      "Effect": "Allow",
+      "Action": [
+        "organizations:DescribeAccount",
+        "organizations:DescribeHandshake",
+        "organizations:DescribeOrganization",
+        "organizations:ListAccounts*",
+        "organizations:ListHandshakes*",
+        "organizations:ListParents",
+        "organizations:ListTagsForResource"
+      ],
+      "Resource": "*"
+    },
+    {
+      "Effect": "Allow",
+      "Sid": "HealthKnownIssues",
+      "Action": [
+        "health:EnableHealthServiceAccessForOrganization",
+        "health:DescribeEventsForOrganization",
+        "health:DescribeEvents"
+      ],
+      "Resource": "*"
+    },
+    {
+      "Sid": "Finops",
+      "Effect": "Allow",
+      "Action": [
+        "ec2:DescribeReservedInstances",
+        "savingsplans:DescribeSavingsPlans",
+        "ce:Get*",
+        "ce:List*",
+        "ce:Describe*",
+        "cur:DescribeReportDefinitions",
+        "ce:UpdateCostAllocationTagsStatus"
+      ],
+      "Resource": "*"
+    },
+    {
+      "Sid": "Onboarding",
+      "Effect": "Allow",
+      "Action": ["iam:GetRole", "iam:GetPolicy", "iam:GetPolicyVersion"],
+      "Resource": ["arn:aws:iam::SAAS_ACCOUNT_ID:role/doitintl_cmp", "arn:aws:iam::SAAS_ACCOUNT_ID:policy/doitintl_cmp"]
+    },
+    {
+      "Sid": "BillingBucket",
+      "Effect": "Allow",
+      "Action": ["s3:ListBucket"],
+      "Resource": "arn:aws:s3:::SAAS_S3_CUR_BUCKET"
+    },
+    {
+      "Sid": "BillingObject",
+      "Effect": "Allow",
+      "Action": ["s3:GetObject"],
+      "Resource": "arn:aws:s3:::SAAS_S3_CUR_BUCKET/*"
+    }
+  ],
+  "Version": "2012-10-17"
+}

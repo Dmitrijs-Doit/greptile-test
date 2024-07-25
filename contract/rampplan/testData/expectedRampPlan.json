@@ -1,0 +1,376 @@
+{
+  "attributionGroupRef": {
+    "Parent": {
+      "Parent": {
+        "Parent": {
+          "Parent": null,
+          "Path": "projects/cmp-spot-scaling-dev/databases/(default)/documents/cloudAnalytics",
+          "ID": "cloudAnalytics"
+        },
+        "Path": "projects/cmp-spot-scaling-dev/databases/(default)/documents/cloudAnalytics/attribution-groups",
+        "ID": "attribution-groups"
+      },
+      "Path": "projects/cmp-spot-scaling-dev/databases/(default)/documents/cloudAnalytics/attribution-groups/cloudAnalyticsAttributionGroups",
+      "ID": "cloudAnalyticsAttributionGroups"
+    },
+    "Path": "projects/cmp-spot-scaling-dev/databases/(default)/documents/cloudAnalytics/attribution-groups/cloudAnalyticsAttributionGroups/ioucn9k5qX16YTZMv3L2",
+    "ID": "ioucn9k5qX16YTZMv3L2"
+  },
+  "commitmentPeriods": [
+    {
+      "actuals": [],
+      "actualsBreakdown": null,
+      "dates": [
+        {
+          "Month": 8,
+          "Year": 2023
+        },
+        {
+          "Month": 9,
+          "Year": 2023
+        },
+        {
+          "Month": 10,
+          "Year": 2023
+        },
+        {
+          "Month": 11,
+          "Year": 2023
+        },
+        {
+          "Month": 12,
+          "Year": 2023
+        },
+        {
+          "Month": 1,
+          "Year": 2024
+        },
+        {
+          "Month": 2,
+          "Year": 2024
+        },
+        {
+          "Month": 3,
+          "Year": 2024
+        },
+        {
+          "Month": 4,
+          "Year": 2024
+        },
+        {
+          "Month": 5,
+          "Year": 2024
+        },
+        {
+          "Month": 6,
+          "Year": 2024
+        },
+        {
+          "Month": 7,
+          "Year": 2024
+        },
+        {
+          "Month": 8,
+          "Year": 2024
+        },
+        {
+          "Month": 9,
+          "Year": 2024
+        },
+        {
+          "Month": 10,
+          "Year": 2024
+        },
+        {
+          "Month": 11,
+          "Year": 2024
+        },
+        {
+          "Month": 12,
+          "Year": 2024
+        },
+        {
+          "Month": 1,
+          "Year": 2025
+        },
+        {
+          "Month": 2,
+          "Year": 2025
+        },
+        {
+          "Month": 3,
+          "Year": 2025
+        },
+        {
+          "Month": 4,
+          "Year": 2025
+        },
+        {
+          "Month": 5,
+          "Year": 2025
+        },
+        {
+          "Month": 6,
+          "Year": 2025
+        },
+        {
+          "Month": 7,
+          "Year": 2025
+        },
+        {
+          "Month": 8,
+          "Year": 2025
+        },
+        {
+          "Month": 9,
+          "Year": 2025
+        },
+        {
+          "Month": 10,
+          "Year": 2025
+        },
+        {
+          "Month": 11,
+          "Year": 2025
+        },
+        {
+          "Month": 12,
+          "Year": 2025
+        },
+        {
+          "Month": 1,
+          "Year": 2026
+        },
+        {
+          "Month": 2,
+          "Year": 2026
+        },
+        {
+          "Month": 3,
+          "Year": 2026
+        },
+        {
+          "Month": 4,
+          "Year": 2026
+        },
+        {
+          "Month": 5,
+          "Year": 2026
+        },
+        {
+          "Month": 6,
+          "Year": 2026
+        },
+        {
+          "Month": 7,
+          "Year": 2026
+        },
+        {
+          "Month": 8,
+          "Year": 2026
+        }
+      ],
+      "endDate": "2026-08-24T00:00:00Z",
+      "periodActualsBreakdown": null,
+      "planned": [
+        0.007292616226071103, 0.027347310847766638, 0.028258887876025523, 0.027347310847766638, 0.028258887876025523,
+        0.028258887876025523, 0.02643573381950775, 0.028258887876025523, 0.027347310847766638, 0.028258887876025523,
+        0.027347310847766638, 0.028258887876025523, 0.028258887876025523, 0.027347310847766638, 0.028258887876025523,
+        0.027347310847766638, 0.028258887876025523, 0.028258887876025523, 0.02552415679124886, 0.028258887876025523,
+        0.027347310847766638, 0.028258887876025523, 0.027347310847766638, 0.028258887876025523, 0.028258887876025523,
+        0.027347310847766638, 0.028258887876025523, 0.027347310847766638, 0.028258887876025523, 0.028258887876025523,
+        0.02552415679124886, 0.028258887876025523, 0.027347310847766638, 0.028258887876025523, 0.027347310847766638,
+        0.028258887876025523, 0.02187784867821331
+      ],
+      "startDate": "2023-08-24T00:00:00Z"
+    }
+  ],
+  "contractEntityRef": {
+    "Parent": {
+      "Parent": null,
+      "Path": "projects/cmp-spot-scaling-dev/databases/(default)/documents/entities",
+      "ID": "entities"
+    },
+    "Path": "projects/cmp-spot-scaling-dev/databases/(default)/documents/entities/FE0H4GqIoS9F1GNHTh2g",
+    "ID": "FE0H4GqIoS9F1GNHTh2g"
+  },
+  "contractId": "t0pluMrEdUPR6eCQjDBa",
+  "createdBy": "Automation Script",
+  "creationDate": "2023-12-04T14:18:11.203874Z",
+  "estEndDate": "2026-08-24T00:00:00Z",
+  "name": "google-cloud Ramp Plan 2023 - 2026",
+  "origCommitmentPeriods": [
+    {
+      "actuals": [],
+      "actualsBreakdown": null,
+      "dates": [
+        {
+          "Month": 8,
+          "Year": 2023
+        },
+        {
+          "Month": 9,
+          "Year": 2023
+        },
+        {
+          "Month": 10,
+          "Year": 2023
+        },
+        {
+          "Month": 11,
+          "Year": 2023
+        },
+        {
+          "Month": 12,
+          "Year": 2023
+        },
+        {
+          "Month": 1,
+          "Year": 2024
+        },
+        {
+          "Month": 2,
+          "Year": 2024
+        },
+        {
+          "Month": 3,
+          "Year": 2024
+        },
+        {
+          "Month": 4,
+          "Year": 2024
+        },
+        {
+          "Month": 5,
+          "Year": 2024
+        },
+        {
+          "Month": 6,
+          "Year": 2024
+        },
+        {
+          "Month": 7,
+          "Year": 2024
+        },
+        {
+          "Month": 8,
+          "Year": 2024
+        },
+        {
+          "Month": 9,
+          "Year": 2024
+        },
+        {
+          "Month": 10,
+          "Year": 2024
+        },
+        {
+          "Month": 11,
+          "Year": 2024
+        },
+        {
+          "Month": 12,
+          "Year": 2024
+        },
+        {
+          "Month": 1,
+          "Year": 2025
+        },
+        {
+          "Month": 2,
+          "Year": 2025
+        },
+        {
+          "Month": 3,
+          "Year": 2025
+        },
+        {
+          "Month": 4,
+          "Year": 2025
+        },
+        {
+          "Month": 5,
+          "Year": 2025
+        },
+        {
+          "Month": 6,
+          "Year": 2025
+        },
+        {
+          "Month": 7,
+          "Year": 2025
+        },
+        {
+          "Month": 8,
+          "Year": 2025
+        },
+        {
+          "Month": 9,
+          "Year": 2025
+        },
+        {
+          "Month": 10,
+          "Year": 2025
+        },
+        {
+          "Month": 11,
+          "Year": 2025
+        },
+        {
+          "Month": 12,
+          "Year": 2025
+        },
+        {
+          "Month": 1,
+          "Year": 2026
+        },
+        {
+          "Month": 2,
+          "Year": 2026
+        },
+        {
+          "Month": 3,
+          "Year": 2026
+        },
+        {
+          "Month": 4,
+          "Year": 2026
+        },
+        {
+          "Month": 5,
+          "Year": 2026
+        },
+        {
+          "Month": 6,
+          "Year": 2026
+        },
+        {
+          "Month": 7,
+          "Year": 2026
+        },
+        {
+          "Month": 8,
+          "Year": 2026
+        }
+      ],
+      "endDate": "2026-08-24T00:00:00Z",
+      "periodActualsBreakdown": null,
+      "planned": [
+        0.007292616226071103, 0.027347310847766638, 0.028258887876025523, 0.027347310847766638, 0.028258887876025523,
+        0.028258887876025523, 0.02643573381950775, 0.028258887876025523, 0.027347310847766638, 0.028258887876025523,
+        0.027347310847766638, 0.028258887876025523, 0.028258887876025523, 0.027347310847766638, 0.028258887876025523,
+        0.027347310847766638, 0.028258887876025523, 0.028258887876025523, 0.02552415679124886, 0.028258887876025523,
+        0.027347310847766638, 0.028258887876025523, 0.027347310847766638, 0.028258887876025523, 0.028258887876025523,
+        0.027347310847766638, 0.028258887876025523, 0.027347310847766638, 0.028258887876025523, 0.028258887876025523,
+        0.02552415679124886, 0.028258887876025523, 0.027347310847766638, 0.028258887876025523, 0.027347310847766638,
+        0.028258887876025523, 0.02187784867821331
+      ],
+      "startDate": "2023-08-24T00:00:00Z"
+    }
+  ],
+  "origEstEndDate": "2026-08-24T00:00:00Z",
+  "platform": "google-cloud",
+  "ref": null,
+  "startDate": "2023-08-24T00:00:00Z",
+  "targetAmount": 1
+}

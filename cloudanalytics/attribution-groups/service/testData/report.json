@@ -1,0 +1,26 @@
+{
+  "type": "custom",
+  "timeCreated": {
+    "seconds": 1678191685,
+    "nanoseconds": 809000000
+  },
+  "draft": false,
+  "timeModified": {
+    "seconds": 1678191711,
+    "nanoseconds": 577000000
+  },
+  "name": "chaim test3",
+  "collaborators": [
+    {
+      "email": "chaim@doit.com",
+      "role": "owner"
+    }
+  ],
+  "hidden": false,
+  "customer": {},
+  "widgetEnabled": false,
+  "organization": null,
+  "description": "",
+  "public": null,
+  "owner": "chaim@doit.com"
+}

@@ -1,0 +1,13 @@
+{
+  "DatedStatement": {
+    "2024-04-18": [
+      {
+        "Sid": "Organizations",
+        "Effect": "Allow",
+        "Action": ["organizations:ListParents"],
+        "Resource": "*"
+      }
+    ]
+  },
+  "Version": "2012-10-17"
+}

@@ -1,0 +1,4 @@
+package domain
+
+type DatasetStorageBillingModel map[string]string
+type ProjectDatasetStorageBillingModel map[string]DatasetStorageBillingModel

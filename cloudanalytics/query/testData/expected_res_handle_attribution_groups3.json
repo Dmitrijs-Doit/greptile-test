@@ -1,0 +1,21 @@
+{
+  "CompositeFilters": null,
+  "AttrGroupsConditions": {
+    "10pEZalkOeXgjQp92tHI": "CASE\n\t\tWHEN (T.project.ancestry_names IN UNNEST(@YXR0cmlidXRpb246dWlLZkdjNzhsWmdZOG1KbklBZks6cHJvamVjdF9hbmNlc3RyeV9uYW1lczowMA) AND T.cloud_provider IN UNNEST(@YXR0cmlidXRpb246dWlLZkdjNzhsWmdZOG1KbklBZks6Y2xvdWRfcHJvdmlkZXI6MTA)) THEN T.cost\n\t\tELSE NULL\n\t\tEND"
+  },
+  "AttrRows": null,
+  "QueryParams": [
+    {
+      "Name": "YXR0cmlidXRpb246dWlLZkdjNzhsWmdZOG1KbklBZks6cHJvamVjdF9hbmNlc3RyeV9uYW1lczowMA",
+      "Value": ["/taboola.com/Data Engineering/", "/taboola.com/IT Systems/", "/252201914815/457639101977/"]
+    },
+    {
+      "Name": "YXR0cmlidXRpb246dWlLZkdjNzhsWmdZOG1KbklBZks6Y2xvdWRfcHJvdmlkZXI6MTA",
+      "Value": ["google-cloud"]
+    },
+    {
+      "Name": "QnJ1dGVmb3JjZQ",
+      "Value": "Bruteforce"
+    }
+  ]
+}

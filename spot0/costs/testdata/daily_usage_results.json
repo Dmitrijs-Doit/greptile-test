@@ -1,0 +1,105 @@
+[
+  {
+    "BillingYear": "2022",
+    "BillingMonth": "09",
+    "DocId": "765670703771_us-east-1_asg_one_on-demand",
+    "CurMonthSpotSpending": 0,
+    "CurMonthSpotHours": 0,
+    "CurMonthOnDemandSpending": 37.45,
+    "CurMonthOnDemandHours": 82.86,
+    "InstanceDetails": [
+      {
+        "InstanceType": "r5a.2xlarge",
+        "CurMonthSpotSpending": 0,
+        "CurMonthSpotHours": 0,
+        "CurMonthOnDemandSpending": 37.45,
+        "CurMonthOnDemandHours": 82.86
+      }
+    ]
+  },
+  {
+    "BillingYear": "2022",
+    "BillingMonth": "09",
+    "DocId": "158494521881_eu-west-1_asg_four_spots",
+    "CurMonthSpotSpending": 436.87,
+    "CurMonthSpotHours": 1485.85,
+    "CurMonthOnDemandSpending": 0,
+    "CurMonthOnDemandHours": 0,
+    "InstanceDetails": [
+      {
+        "InstanceType": "c6i.4xlarge",
+        "CurMonthSpotSpending": 35.74,
+        "CurMonthSpotHours": 97.8,
+        "CurMonthOnDemandSpending": 0,
+        "CurMonthOnDemandHours": 0
+      },
+      {
+        "InstanceType": "m5.4xlarge",
+        "CurMonthSpotSpending": 7.21,
+        "CurMonthSpotHours": 22.54,
+        "CurMonthOnDemandSpending": 0,
+        "CurMonthOnDemandHours": 0
+      },
+      {
+        "InstanceType": "c5.4xlarge",
+        "CurMonthSpotSpending": 326.81,
+        "CurMonthSpotHours": 1189.25,
+        "CurMonthOnDemandSpending": 0,
+        "CurMonthOnDemandHours": 0
+      },
+      {
+        "InstanceType": "m5d.4xlarge",
+        "CurMonthSpotSpending": 67.11,
+        "CurMonthSpotHours": 176.26,
+        "CurMonthOnDemandSpending": 0,
+        "CurMonthOnDemandHours": 0
+      }
+    ]
+  },
+  {
+    "BillingYear": "2022",
+    "BillingMonth": "09",
+    "DocId": "158494521881_eu-west-1_asg_one_on_demand_four_spots",
+    "CurMonthSpotSpending": 436.87,
+    "CurMonthSpotHours": 1485.85,
+    "CurMonthOnDemandSpending": 0,
+    "CurMonthOnDemandHours": 0,
+    "InstanceDetails": [
+      {
+        "InstanceType": "r5a.2xlarge",
+        "CurMonthSpotSpending": 0,
+        "CurMonthSpotHours": 0,
+        "CurMonthOnDemandSpending": 37.45,
+        "CurMonthOnDemandHours": 82.86
+      },
+      {
+        "InstanceType": "c6i.4xlarge",
+        "CurMonthSpotSpending": 35.74,
+        "CurMonthSpotHours": 97.8,
+        "CurMonthOnDemandSpending": 0,
+        "CurMonthOnDemandHours": 0
+      },
+      {
+        "InstanceType": "m5.4xlarge",
+        "CurMonthSpotSpending": 7.21,
+        "CurMonthSpotHours": 22.54,
+        "CurMonthOnDemandSpending": 0,
+        "CurMonthOnDemandHours": 0
+      },
+      {
+        "InstanceType": "c5.4xlarge",
+        "CurMonthSpotSpending": 326.81,
+        "CurMonthSpotHours": 1189.25,
+        "CurMonthOnDemandSpending": 0,
+        "CurMonthOnDemandHours": 0
+      },
+      {
+        "InstanceType": "m5d.4xlarge",
+        "CurMonthSpotSpending": 67.11,
+        "CurMonthSpotHours": 176.26,
+        "CurMonthOnDemandSpending": 0,
+        "CurMonthOnDemandHours": 0
+      }
+    ]
+  }
+]

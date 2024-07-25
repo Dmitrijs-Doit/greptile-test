@@ -1,0 +1,195 @@
+Description: This template creates a Cross-Account-Role that will grant Doit CMP permissions to your AWS account
+Parameters:
+  RoleToAddPolicyTo:
+    Type: String
+    Description: Role to add the policy to
+  Core:
+    Description: Add core policy.
+    Default: true
+    Type: String
+    AllowedValues:
+      - true
+  SpotScaling:
+    Description: Add spot policy.
+    Default: false
+    Type: String
+    AllowedValues:
+      - false
+      - true
+  Quotas:
+    Description: Add Quotas policy.
+    Default: false
+    Type: String
+    AllowedValues:
+      - false
+      - true
+  ExternalId:
+    Type: String
+    Description: External ID for Cross-Account-Role
+  NotificationUrl:
+    Type: String
+    Description: URL used for notification (must end in /api/)
+  SnsArn:
+    Type: String
+    Description: The ARN of the SNS topic you are listening on
+Conditions:
+  CreateCoreResources: !Equals
+    - !Ref Core
+    - true
+  CreateSpotScalingResources: !Equals
+    - !Ref SpotScaling
+    - true
+  CreateQuotasResources: !Equals
+    - !Ref Quotas
+    - true
+Metadata:
+  AWS::CloudFormation::Interface:
+    ParameterGroups:
+      - Label:
+          default: "Cross-Account Role Configuration.  *Do Not Modify*"
+        Parameters:
+          - Core
+          - Quotas
+          - SpotScaling
+          - RoleToAddPolicyTo
+          - ExternalId
+          - NotificationUrl
+          - SnsArn
+    ParameterLabels:
+      ExternalID:
+        default: "External ID"
+Resources:
+  # This is the cross account role that will be opearted by the Partner Solution
+  CrossAccountRole:
+    Properties:
+      Description: DoiT International CMP
+      RoleName: !Ref RoleToAddPolicyTo
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/SecurityAudit
+        - arn:aws:iam::aws:policy/AWSSavingsPlansReadOnlyAccess
+        - arn:aws:iam::aws:policy/job-function/Billing
+      AssumeRolePolicyDocument:
+        Statement:
+          - Action: "sts:AssumeRole"
+            Effect: Allow
+            Principal:
+              AWS: !Sub arn:aws:iam::068664126052:root
+            Condition:
+              StringEquals:
+                sts:ExternalId: !Ref ExternalId
+            Sid: ""
+        Version: "2012-10-17"
+      Path: "/"
+      Policies:
+        - PolicyDocument:
+            Statement:
+              - Action:
+                  - "iam:List*"
+                  - "iam:Get*"
+                Effect: Allow
+                Resource: "*"
+            Version: "2012-10-17"
+          PolicyName: PartnerAccess
+    Type: "AWS::IAM::Role"
+  DoitintlAsgOptRole:
+    Condition: CreateSpotScalingResources
+    Properties:
+      Description: DoiT role to send asg events
+      RoleName: doitintl-asg-opt
+      Path: "/"
+      AssumeRolePolicyDocument:
+        Statement:
+          - Action: "sts:AssumeRole"
+            Effect: Allow
+            Principal:
+              Service: "events.amazonaws.com"
+            Sid: ""
+        Version: "2012-10-17"
+      Policies:
+        - PolicyDocument:
+            Statement:
+              - Action:
+                  - "events:PutEvents"
+                Effect: Allow
+                Resource: "*"
+            Version: "2012-10-17"
+          PolicyName: doitintl-asg-opt
+    Type: "AWS::IAM::Role"
+  SpotScalingPolicy:
+    Condition: CreateSpotScalingResources
+    Type: AWS::IAM::ManagedPolicy
+    Properties:
+      PolicyDocument:
+        Version: 2012-10-17
+        Statement:
+          - Effect: Allow
+            Action:
+              - "ec2:CreateLaunchTemplate"
+              - "ec2:CreateLaunchTemplateVersion"
+              - "autoscaling:BatchDeleteScheduledAction"
+              - "autoscaling:BatchPutScheduledUpdateGroupAction"
+              - "autoscaling:CreateOrUpdateTags"
+              - "autoscaling:UpdateAutoScalingGroup"
+              - "ec2:ModifyLaunchTemplate"
+              - "ec2:RunInstances"
+              - "autoscaling:Describe*"
+              - "cloudformation:ListStacks"
+              - "cloudformation:Describe*"
+              - "ec2:Describe*"
+              - "iam:PassRole"
+              - "events:PutRule"
+              - "events:PutTargets"
+              - "events:PutEvents"
+              - "autoscaling:AttachInstances"
+              - "ec2:TerminateInstances"
+              - "ec2:CreateTags"
+              - "ec2:DeleteTags"
+              - "ec2:CreateLaunchTemplateVersion"
+              - "ec2:CancelSpotInstanceRequests"
+            Resource: "*"
+      Roles:
+        - !Ref CrossAccountRole
+  QuotasPolicy:
+    Condition: CreateQuotasResources
+    Type: AWS::IAM::ManagedPolicy
+    Properties:
+      # PolicyName: DoiT_Quotas_Policy-DO_NOT_DELETE
+      PolicyDocument:
+        Version: 2012-10-17
+        Statement:
+          - Effect: Allow
+            Action:
+              - "support:DescribeTrustedAdvisorCheckSummaries"
+              - "support:DescribeTrustedAdvisorCheckRefreshStatuses"
+              - "support:DescribeTrustedAdvisorChecks"
+              - "support:DescribeSeverityLevels"
+              - "support:RefreshTrustedAdvisorCheck"
+              - "support:DescribeSupportLevel"
+              - "support:DescribeCommunications"
+              - "support:DescribeServices"
+              - "support:DescribeIssueTypes"
+              - "support:DescribeTrustedAdvisorCheckResult"
+              - "trustedadvisor:DescribeNotificationPreferences"
+              - "trustedadvisor:DescribeCheckRefreshStatuses"
+              - "trustedadvisor:DescribeCheckItems"
+              - "trustedadvisor:DescribeAccount"
+              - "trustedadvisor:DescribeAccountAccess"
+              - "trustedadvisor:DescribeChecks"
+              - "trustedadvisor:DescribeCheckSummaries"
+            Resource: "*"
+      Roles:
+        - !Ref CrossAccountRole
+  DoitCmpHook:
+    Type: Custom::DoitCmpHook
+    Properties:
+      ServiceToken: !Ref SnsArn
+      RoleArn: !GetAtt CrossAccountRole.Arn
+      AccountID: !Ref "AWS::AccountId"
+      ExternalID: !Ref ExternalId
+      NotificationUrl: !Ref NotificationUrl
+    Version: "1.0"
+Outputs:
+  RoleName:
+    Value: !Ref CrossAccountRole
+  RoleArn:
+    Value: !GetAtt CrossAccountRole.Arn

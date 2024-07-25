@@ -1,0 +1,99 @@
+Description: This template creates a role to allow EKS metrics export.
+Parameters:
+  EKSClusterName:
+    Type: String
+    Description: Customer ID for Cross-Account-Role
+  OIDCPROVIDER:
+    Type: String
+    Description: OIDCPROVIDER
+  NAMESPACE:
+    Type: String
+    Description: NAMESPACE
+  SERVICEACCOUNT:
+    Type: String
+    Description: SERVICEACCOUNT
+  PolicyName:
+    Type: String
+    Description: New Policy Name
+  RoleName:
+    Type: String
+    Description: New Role Name
+  S3Bucket:
+    Type: String
+    Description: Bucket Name
+Metadata:
+  AWS::CloudFormation::Interface:
+    ParameterGroups:
+      - Label:
+          default: "Cross-Account Role Configuration.  *Do Not Modify*"
+        Parameters:
+          - EKSClusterName
+          - OIDCPROVIDER
+          - NAMESPACE
+          - SERVICEACCOUNT
+          - PolicyName
+          - RoleName
+          - S3Bucket
+Resources:
+  CrossAccountRole:
+    Type: "AWS::IAM::Role"
+    Properties:
+      Description: DoiT International EKS Metrics export
+      RoleName: !Ref RoleName
+      AssumeRolePolicyDocument: !Sub
+        - |
+          {
+            "Version": "2012-10-17",
+            "Statement": [
+                {
+                    "Effect": "Allow",
+                    "Principal": {
+                        "Federated": "${IamOidcProviderArn}"
+                    },
+                    "Action": "sts:AssumeRoleWithWebIdentity",
+                    "Condition": {
+                        "StringEquals": {
+                            "${OidcProviderEndpoint}:aud": "sts.amazonaws.com",
+                            "${OidcProviderEndpoint}:sub": "system:serviceaccount:doit:doit-collector"
+                        }
+                    }
+                }
+            ]
+          }
+        - {
+            "IamOidcProviderArn": !Sub "arn:aws:iam::${AWS::AccountId}:oidc-provider/oidc.eks.us-east-1.amazonaws.com/id/${OIDCPROVIDER}",
+            "OidcProviderEndpoint": "oidc.eks.us-east-1.amazonaws.com/id/838CD4C82C1E964993BAB44CC0F11C9E",
+          }
+
+  EksS3Policy:
+    Type: AWS::IAM::ManagedPolicy
+    Properties:
+      ManagedPolicyName: doitintl_eks_s3
+      PolicyDocument:
+        Version: 2012-10-17
+        Statement:
+          - Effect: Allow
+            Sid: S3Bucket
+            Action:
+              - s3:ListBucket
+            Resource: !Sub
+              - "arn:aws:s3:::${BucketName}"
+              - BucketName: !Ref S3Bucket
+      Roles:
+        - !Ref CrossAccountRole
+  # DoitCmpHook:
+  #   Type: Custom::DoitCmpHook
+  #   Properties:
+  #     ServiceToken: "arn:aws:sns:us-east-1:068664126052:doitintl-aws-connect"
+  #     RoleArn: "doitintl_cmp_billing"
+  #     AccountID: !Ref "AWS::AccountId"
+  #     ExternalID: !Ref CustomerId
+  #     NotificationUrl: "https://scheduled-tasks-dot-doitintl-cmp-dev.uc.r.appspot.com/webhooks/v1/billing-standalone-aws/update-billing"
+  #     S3Bucket: !Ref S3Bucket
+  #     CurPath: !Ref CurPath
+  #   Version: "1.0"
+Outputs:
+  RoleName:
+    Value: !Ref CrossAccountRole
+  RoleArn:
+    Value: !GetAtt CrossAccountRole.Arn

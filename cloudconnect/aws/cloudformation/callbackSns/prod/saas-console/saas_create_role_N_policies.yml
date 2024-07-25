@@ -1,0 +1,107 @@
+Description: This template creates a role to allow SaaS Console access.
+Parameters:
+  CustomerId:
+    Type: String
+    Description: Customer ID for Cross-Account-Role
+  S3Bucket:
+    Type: String
+    Description: CUR S3 Bucket URL
+Metadata:
+  AWS::CloudFormation::Interface:
+    ParameterGroups:
+      - Label:
+          default: "Cross-Account Role Configuration.  *Do Not Modify*"
+        Parameters:
+          - CustomerId
+          - S3Bucket
+Resources:
+  CrossAccountRole:
+    Type: "AWS::IAM::Role"
+    Properties:
+      Description: DoiT International SaaS Console
+      RoleName: "doitintl_cmp"
+      AssumeRolePolicyDocument:
+        Statement:
+          - Action:
+              - "sts:AssumeRole"
+            Effect: Allow
+            Principal:
+              AWS: !Sub arn:aws:iam::068664126052:root
+            Sid: "Management"
+        Version: "2012-10-17"
+      Path: "/"
+  OrgBillingPolicy:
+    Type: AWS::IAM::ManagedPolicy
+    Properties:
+      ManagedPolicyName: doitintl_cmp
+      PolicyDocument:
+        Version: 2012-10-17
+        Statement:
+          - Effect: Allow
+            Sid: Organization
+            Action:
+              - organizations:DescribeAccount
+              - organizations:DescribeHandshake
+              - organizations:DescribeOrganization
+              - organizations:ListAccounts*
+              - organizations:ListHandshakes*
+              - organizations:ListParents
+              - organizations:ListTagsForResource
+            Resource: "*"
+          - Effect: Allow
+            Sid: HealthKnownIssues
+            Action:
+              - health:EnableHealthServiceAccessForOrganization
+              - health:DescribeEventsForOrganization
+              - health:DescribeEvents
+            Resource: "*"
+          - Effect: Allow
+            Sid: Finops
+            Action:
+              - ec2:DescribeReservedInstances
+              - savingsplans:DescribeSavingsPlans
+              - ce:Get*
+              - ce:List*
+              - ce:Describe*
+              - cur:DescribeReportDefinitions
+              - ce:UpdateCostAllocationTagsStatus
+            Resource: "*"
+          - Effect: Allow
+            Sid: Onboarding
+            Action:
+              - iam:GetRole
+              - iam:GetPolicy
+            Resource:
+              - !Sub "arn:aws:iam::${AWS::AccountId}:role/doitintl_cmp"
+              - !Sub "arn:aws:iam::${AWS::AccountId}:policy/doitintl_cmp"
+          - Effect: Allow
+            Sid: BillingBucket
+            Action:
+              - s3:ListBucket
+            Resource: !Sub
+              - "arn:aws:s3:::${BucketName}"
+              - BucketName: !Ref S3Bucket
+          - Effect: Allow
+            Sid: BillingObject
+            Action:
+              - s3:GetObject
+            Resource: !Sub
+              - "arn:aws:s3:::${BucketName}/*"
+              - BucketName: !Ref S3Bucket
+      Roles:
+        - !Ref CrossAccountRole
+  DoitCmpHook:
+    Type: Custom::DoitCmpHook
+    Properties:
+      ServiceToken: "arn:aws:sns:us-east-1:068664126052:doitintl-aws-connect"
+      RoleArn: "doitintl_cmp"
+      AccountID: !Ref "AWS::AccountId"
+      ExternalID: !Ref CustomerId
+      NotificationUrl: "https://scheduled-tasks-dot-me-doit-intl-com.uc.r.appspot.com/webhooks/v1/saas-console-aws/onboarding"
+      S3Bucket: !Ref S3Bucket
+    Version: "1.0"
+Outputs:
+  RoleName:
+    Value: !Ref CrossAccountRole
+  RoleArn:
+    Value: !GetAtt CrossAccountRole.Arn

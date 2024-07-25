@@ -1,0 +1,828 @@
+{
+  "accountId": "717898102007",
+  "accountName": "doit-intl",
+  "asgName": "CI/CD ASG",
+  "cloudFormationStack": "",
+  "config": {
+    "CapacityRebalance": true,
+    "IgnoreFamily": false,
+    "IgnoreGeneration": true,
+    "MultiplyFactorLower": 1,
+    "MultiplyFactorUpper": 2,
+    "OnDemandAllocationStrategy": "prioritized",
+    "OnDemandBaseCapacity": 0,
+    "OnDemandPercentageAboveBaseCapacity": 20,
+    "SpotAllocationStrategy": "capacity-optimized",
+    "excludedSubnets": [
+      "subnet-08da7922954ded203",
+      "subnet-0e5027041158fcb63",
+      "subnet-001fa9394041d8418",
+      "subnet-047cb652978ca2929",
+      "subnet-05b71d74bd8c94766",
+      "subnet-05ec173fc004e0e78",
+      "subnet-094e71a38ec3b55eb"
+    ]
+  },
+  "customer": {
+    "_path": {
+      "segments": ["customers", "uj0IyFgl9NL2s9ORFrR6"]
+    }
+  },
+  "error": "",
+  "execId": "6886ae0e-dc29-4dd6-af64-e6b04857273f",
+  "instanceTypesDetails": {
+    "m4.xlarge": {
+      "compute": 4,
+      "memory": 16
+    },
+    "m5.xlarge": {
+      "compute": 4,
+      "memory": 16
+    },
+    "m5a.xlarge": {
+      "compute": 4,
+      "memory": 16
+    },
+    "m5ad.xlarge": {
+      "compute": 4,
+      "memory": 16
+    },
+    "m5d.xlarge": {
+      "compute": 4,
+      "memory": 16
+    },
+    "m5dn.xlarge": {
+      "compute": 4,
+      "memory": 16
+    },
+    "m5n.xlarge": {
+      "compute": 4,
+      "memory": 16
+    },
+    "m5zn.xlarge": {
+      "compute": 4,
+      "memory": 16
+    },
+    "t2.xlarge": {
+      "compute": 4,
+      "memory": 16
+    },
+    "t3.xlarge": {
+      "compute": 4,
+      "memory": 16
+    },
+    "t3a.xlarge": {
+      "compute": 4,
+      "memory": 16
+    }
+  },
+  "isNewASG": false,
+  "managedStatus": "not_supported",
+  "mode": "recommended",
+  "region": "eu-central-1",
+  "savings": {
+    "hourly": {
+      "Desired": 0,
+      "Max": 0,
+      "Min": 0
+    },
+    "monthly": {
+      "Desired": 0,
+      "Max": 0,
+      "Min": 0
+    }
+  },
+  "spotisize": {
+    "costs": {
+      "averageDesiredCapacity": 4,
+      "cur": {
+        "onDemandHourCost": 0.192,
+        "spotHourCost": 0.067885
+      },
+      "rec": {
+        "onDemandHourCost": 0.192,
+        "spotHourCost": 0.067885
+      }
+    },
+    "curAsg": {
+      "AutoScalingGroupARN": "arn:aws:autoscaling:eu-central-1:717898102007:autoScalingGroup:b7ea1b79-38e8-452a-973e-d39b169fda2f:autoScalingGroupName/CI/CD ASG",
+      "AutoScalingGroupName": "CI/CD ASG",
+      "AvailabilityZones": ["eu-central-1a"],
+      "CapacityRebalance": true,
+      "CreatedTime": {
+        "_nanoseconds": 324000000,
+        "_seconds": 1642164739
+      },
+      "DefaultCooldown": 300,
+      "DesiredCapacity": 4,
+      "EnabledMetrics": null,
+      "HealthCheckGracePeriod": 300,
+      "HealthCheckType": "EC2",
+      "Instances": [
+        {
+          "AvailabilityZone": "eu-central-1a",
+          "HealthStatus": "Healthy",
+          "InstanceId": "i-05e0763fd7981d9eb",
+          "InstanceType": "t3.xlarge",
+          "LaunchConfigurationName": null,
+          "LaunchTemplate": {
+            "LaunchTemplateId": "lt-01a1e07802e8e1724",
+            "LaunchTemplateName": "CI/CD_template",
+            "Version": "1"
+          },
+          "LifecycleState": "InService",
+          "ProtectedFromScaleIn": false,
+          "WeightedCapacity": "1"
+        }
+      ],
+      "LaunchConfigurationName": null,
+      "LaunchTemplate": null,
+      "LoadBalancerNames": null,
+      "MaxInstanceLifetime": null,
+      "MaxSize": 6,
+      "MinSize": 2,
+      "MixedInstancesPolicy": {
+        "InstancesDistribution": {
+          "OnDemandAllocationStrategy": "prioritized",
+          "OnDemandBaseCapacity": 0,
+          "OnDemandPercentageAboveBaseCapacity": 20,
+          "SpotAllocationStrategy": "capacity-optimized",
+          "SpotInstancePools": null,
+          "SpotMaxPrice": null
+        },
+        "LaunchTemplate": {
+          "LaunchTemplateSpecification": {
+            "LaunchTemplateId": "lt-01a1e07802e8e1724",
+            "LaunchTemplateName": "CI/CD_template",
+            "Version": "1"
+          },
+          "Overrides": [
+            {
+              "InstanceType": "t3.xlarge",
+              "LaunchTemplateSpecification": null,
+              "WeightedCapacity": "1"
+            },
+            {
+              "InstanceType": "t3a.xlarge",
+              "LaunchTemplateSpecification": null,
+              "WeightedCapacity": "1"
+            },
+            {
+              "InstanceType": "t2.xlarge",
+              "LaunchTemplateSpecification": null,
+              "WeightedCapacity": "1"
+            },
+            {
+              "InstanceType": "m5dn.xlarge",
+              "LaunchTemplateSpecification": null,
+              "WeightedCapacity": "1"
+            },
+            {
+              "InstanceType": "m4.xlarge",
+              "LaunchTemplateSpecification": null,
+              "WeightedCapacity": "1"
+            },
+            {
+              "InstanceType": "m5a.xlarge",
+              "LaunchTemplateSpecification": null,
+              "WeightedCapacity": "1"
+            },
+            {
+              "InstanceType": "m5n.xlarge",
+              "LaunchTemplateSpecification": null,
+              "WeightedCapacity": "1"
+            },
+            {
+              "InstanceType": "m5ad.xlarge",
+              "LaunchTemplateSpecification": null,
+              "WeightedCapacity": "1"
+            },
+            {
+              "InstanceType": "m5.xlarge",
+              "LaunchTemplateSpecification": null,
+              "WeightedCapacity": "1"
+            },
+            {
+              "InstanceType": "m5d.xlarge",
+              "LaunchTemplateSpecification": null,
+              "WeightedCapacity": "1"
+            },
+            {
+              "InstanceType": "m5zn.xlarge",
+              "LaunchTemplateSpecification": null,
+              "WeightedCapacity": "1"
+            }
+          ]
+        }
+      },
+      "NewInstancesProtectedFromScaleIn": false,
+      "PlacementGroup": null,
+      "ServiceLinkedRoleARN": "arn:aws:iam::717898102007:role/aws-service-role/autoscaling.amazonaws.com/AWSServiceRoleForAutoScaling",
+      "Status": null,
+      "SuspendedProcesses": null,
+      "Tags": null,
+      "TargetGroupARNs": null,
+      "TerminationPolicies": ["Default"],
+      "VPCZoneIdentifier": "subnet-032de5793d4a7ae40"
+    },
+    "curAsgCost": {
+      "Desired": {
+        "OnDemandNum": 1,
+        "SpotInstNum": 3,
+        "SpotPrices": [
+          {
+            "InstanceType": "t2.xlarge",
+            "Price": 0.06778
+          },
+          {
+            "InstanceType": "t3a.xlarge",
+            "Price": 0.06799
+          },
+          {
+            "InstanceType": "t3.xlarge",
+            "Price": 0.06816
+          },
+          {
+            "InstanceType": "m5.xlarge",
+            "Price": 0.06993
+          },
+          {
+            "InstanceType": "m5zn.xlarge",
+            "Price": 0.07066
+          },
+          {
+            "InstanceType": "m5ad.xlarge",
+            "Price": 0.0752
+          },
+          {
+            "InstanceType": "m5dn.xlarge",
+            "Price": 0.08202
+          },
+          {
+            "InstanceType": "m5a.xlarge",
+            "Price": 0.08513
+          },
+          {
+            "InstanceType": "m5n.xlarge",
+            "Price": 0.08739
+          },
+          {
+            "InstanceType": "m5d.xlarge",
+            "Price": 0.09154
+          },
+          {
+            "InstanceType": "m4.xlarge",
+            "Price": 0.09309
+          }
+        ],
+        "TotalPrice": 0.395655
+      },
+      "Max": {
+        "OnDemandNum": 2,
+        "SpotInstNum": 4,
+        "SpotPrices": [
+          {
+            "InstanceType": "t2.xlarge",
+            "Price": 0.06778
+          },
+          {
+            "InstanceType": "t3a.xlarge",
+            "Price": 0.06799
+          },
+          {
+            "InstanceType": "t3.xlarge",
+            "Price": 0.06816
+          },
+          {
+            "InstanceType": "m5.xlarge",
+            "Price": 0.06993
+          },
+          {
+            "InstanceType": "m5zn.xlarge",
+            "Price": 0.07066
+          },
+          {
+            "InstanceType": "m5ad.xlarge",
+            "Price": 0.0752
+          },
+          {
+            "InstanceType": "m5dn.xlarge",
+            "Price": 0.08202
+          },
+          {
+            "InstanceType": "m5a.xlarge",
+            "Price": 0.08513
+          },
+          {
+            "InstanceType": "m5n.xlarge",
+            "Price": 0.08739
+          },
+          {
+            "InstanceType": "m5d.xlarge",
+            "Price": 0.09154
+          },
+          {
+            "InstanceType": "m4.xlarge",
+            "Price": 0.09309
+          }
+        ],
+        "TotalPrice": 0.65554
+      },
+      "Min": {
+        "OnDemandNum": 1,
+        "SpotInstNum": 1,
+        "SpotPrices": [
+          {
+            "InstanceType": "t2.xlarge",
+            "Price": 0.06778
+          },
+          {
+            "InstanceType": "t3a.xlarge",
+            "Price": 0.06799
+          },
+          {
+            "InstanceType": "t3.xlarge",
+            "Price": 0.06816
+          },
+          {
+            "InstanceType": "m5.xlarge",
+            "Price": 0.06993
+          },
+          {
+            "InstanceType": "m5zn.xlarge",
+            "Price": 0.07066
+          },
+          {
+            "InstanceType": "m5ad.xlarge",
+            "Price": 0.0752
+          },
+          {
+            "InstanceType": "m5dn.xlarge",
+            "Price": 0.08202
+          },
+          {
+            "InstanceType": "m5a.xlarge",
+            "Price": 0.08513
+          },
+          {
+            "InstanceType": "m5n.xlarge",
+            "Price": 0.08739
+          },
+          {
+            "InstanceType": "m5d.xlarge",
+            "Price": 0.09154
+          },
+          {
+            "InstanceType": "m4.xlarge",
+            "Price": 0.09309
+          }
+        ],
+        "TotalPrice": 0.25988500000000003
+      },
+      "OnDemandPrice": 0.192,
+      "SpotAvgPrice": 0.067885,
+      "SpotPrices": [
+        {
+          "InstanceType": "t2.xlarge",
+          "Price": 0.06778
+        },
+        {
+          "InstanceType": "t3a.xlarge",
+          "Price": 0.06799
+        },
+        {
+          "InstanceType": "t3.xlarge",
+          "Price": 0.06816
+        },
+        {
+          "InstanceType": "m5.xlarge",
+          "Price": 0.06993
+        },
+        {
+          "InstanceType": "m5zn.xlarge",
+          "Price": 0.07066
+        },
+        {
+          "InstanceType": "m5ad.xlarge",
+          "Price": 0.0752
+        },
+        {
+          "InstanceType": "m5dn.xlarge",
+          "Price": 0.08202
+        },
+        {
+          "InstanceType": "m5a.xlarge",
+          "Price": 0.08513
+        },
+        {
+          "InstanceType": "m5n.xlarge",
+          "Price": 0.08739
+        },
+        {
+          "InstanceType": "m5d.xlarge",
+          "Price": 0.09154
+        },
+        {
+          "InstanceType": "m4.xlarge",
+          "Price": 0.09309
+        }
+      ]
+    },
+    "curAsgDetails": {
+      "allOnDemand": false,
+      "instances": [
+        "t3.xlarge",
+        "t3a.xlarge",
+        "t2.xlarge",
+        "m5dn.xlarge",
+        "m4.xlarge",
+        "m5a.xlarge",
+        "m5n.xlarge",
+        "m5ad.xlarge",
+        "m5.xlarge",
+        "m5d.xlarge",
+        "m5zn.xlarge"
+      ]
+    },
+    "curExcludedInstanceTypes": [],
+    "curExcludedSubnets": null,
+    "recAsg": {
+      "AutoScalingGroupARN": "arn:aws:autoscaling:eu-central-1:717898102007:autoScalingGroup:b7ea1b79-38e8-452a-973e-d39b169fda2f:autoScalingGroupName/CI/CD ASG",
+      "AutoScalingGroupName": "CI/CD ASG",
+      "AvailabilityZones": ["eu-central-1a"],
+      "CapacityRebalance": true,
+      "CreatedTime": {
+        "_nanoseconds": 324000000,
+        "_seconds": 1642164739
+      },
+      "DefaultCooldown": 300,
+      "DesiredCapacity": 4,
+      "EnabledMetrics": null,
+      "HealthCheckGracePeriod": 300,
+      "HealthCheckType": "EC2",
+      "Instances": [
+        {
+          "AvailabilityZone": "eu-central-1a",
+          "HealthStatus": "Healthy",
+          "InstanceId": "i-05e0763fd7981d9eb",
+          "InstanceType": "t3.xlarge",
+          "LaunchConfigurationName": null,
+          "LaunchTemplate": {
+            "LaunchTemplateId": "lt-01a1e07802e8e1724",
+            "LaunchTemplateName": "CI/CD_template",
+            "Version": "1"
+          },
+          "LifecycleState": "InService",
+          "ProtectedFromScaleIn": false,
+          "WeightedCapacity": "1"
+        }
+      ],
+      "LaunchConfigurationName": null,
+      "LaunchTemplate": null,
+      "LoadBalancerNames": null,
+      "MaxInstanceLifetime": null,
+      "MaxSize": 6,
+      "MinSize": 2,
+      "MixedInstancesPolicy": {
+        "InstancesDistribution": {
+          "OnDemandAllocationStrategy": null,
+          "OnDemandBaseCapacity": 0,
+          "OnDemandPercentageAboveBaseCapacity": 20,
+          "SpotAllocationStrategy": "capacity-optimized",
+          "SpotInstancePools": null,
+          "SpotMaxPrice": null
+        },
+        "LaunchTemplate": {
+          "LaunchTemplateSpecification": {
+            "LaunchTemplateId": null,
+            "LaunchTemplateName": null,
+            "Version": null
+          },
+          "Overrides": [
+            {
+              "InstanceType": "t3.xlarge",
+              "LaunchTemplateSpecification": null,
+              "WeightedCapacity": "1"
+            },
+            {
+              "InstanceType": "t3a.xlarge",
+              "LaunchTemplateSpecification": null,
+              "WeightedCapacity": "1"
+            },
+            {
+              "InstanceType": "t2.xlarge",
+              "LaunchTemplateSpecification": null,
+              "WeightedCapacity": "1"
+            },
+            {
+              "InstanceType": "m5dn.xlarge",
+              "LaunchTemplateSpecification": null,
+              "WeightedCapacity": "1"
+            },
+            {
+              "InstanceType": "m4.xlarge",
+              "LaunchTemplateSpecification": null,
+              "WeightedCapacity": "1"
+            },
+            {
+              "InstanceType": "m5a.xlarge",
+              "LaunchTemplateSpecification": null,
+              "WeightedCapacity": "1"
+            },
+            {
+              "InstanceType": "m5n.xlarge",
+              "LaunchTemplateSpecification": null,
+              "WeightedCapacity": "1"
+            },
+            {
+              "InstanceType": "m5ad.xlarge",
+              "LaunchTemplateSpecification": null,
+              "WeightedCapacity": "1"
+            },
+            {
+              "InstanceType": "m5.xlarge",
+              "LaunchTemplateSpecification": null,
+              "WeightedCapacity": "1"
+            },
+            {
+              "InstanceType": "m5d.xlarge",
+              "LaunchTemplateSpecification": null,
+              "WeightedCapacity": "1"
+            },
+            {
+              "InstanceType": "m5zn.xlarge",
+              "LaunchTemplateSpecification": null,
+              "WeightedCapacity": "1"
+            }
+          ]
+        }
+      },
+      "NewInstancesProtectedFromScaleIn": false,
+      "PlacementGroup": null,
+      "ServiceLinkedRoleARN": "arn:aws:iam::717898102007:role/aws-service-role/autoscaling.amazonaws.com/AWSServiceRoleForAutoScaling",
+      "Status": null,
+      "SuspendedProcesses": null,
+      "Tags": null,
+      "TargetGroupARNs": null,
+      "TerminationPolicies": ["Default"],
+      "VPCZoneIdentifier": "subnet-032de5793d4a7ae40"
+    },
+    "recAsgCost": {
+      "Desired": {
+        "OnDemandNum": 1,
+        "SpotInstNum": 3,
+        "SpotPrices": [
+          {
+            "InstanceType": "t2.xlarge",
+            "Price": 0.06778
+          },
+          {
+            "InstanceType": "t3a.xlarge",
+            "Price": 0.06799
+          },
+          {
+            "InstanceType": "t3.xlarge",
+            "Price": 0.06816
+          },
+          {
+            "InstanceType": "m5.xlarge",
+            "Price": 0.06993
+          },
+          {
+            "InstanceType": "m5zn.xlarge",
+            "Price": 0.07066
+          },
+          {
+            "InstanceType": "m5ad.xlarge",
+            "Price": 0.0752
+          },
+          {
+            "InstanceType": "m5dn.xlarge",
+            "Price": 0.08202
+          },
+          {
+            "InstanceType": "m5a.xlarge",
+            "Price": 0.08513
+          },
+          {
+            "InstanceType": "m5n.xlarge",
+            "Price": 0.08739
+          },
+          {
+            "InstanceType": "m5d.xlarge",
+            "Price": 0.09154
+          },
+          {
+            "InstanceType": "m4.xlarge",
+            "Price": 0.09309
+          }
+        ],
+        "TotalPrice": 0.395655
+      },
+      "Max": {
+        "OnDemandNum": 2,
+        "SpotInstNum": 4,
+        "SpotPrices": [
+          {
+            "InstanceType": "t2.xlarge",
+            "Price": 0.06778
+          },
+          {
+            "InstanceType": "t3a.xlarge",
+            "Price": 0.06799
+          },
+          {
+            "InstanceType": "t3.xlarge",
+            "Price": 0.06816
+          },
+          {
+            "InstanceType": "m5.xlarge",
+            "Price": 0.06993
+          },
+          {
+            "InstanceType": "m5zn.xlarge",
+            "Price": 0.07066
+          },
+          {
+            "InstanceType": "m5ad.xlarge",
+            "Price": 0.0752
+          },
+          {
+            "InstanceType": "m5dn.xlarge",
+            "Price": 0.08202
+          },
+          {
+            "InstanceType": "m5a.xlarge",
+            "Price": 0.08513
+          },
+          {
+            "InstanceType": "m5n.xlarge",
+            "Price": 0.08739
+          },
+          {
+            "InstanceType": "m5d.xlarge",
+            "Price": 0.09154
+          },
+          {
+            "InstanceType": "m4.xlarge",
+            "Price": 0.09309
+          }
+        ],
+        "TotalPrice": 0.65554
+      },
+      "Min": {
+        "OnDemandNum": 1,
+        "SpotInstNum": 1,
+        "SpotPrices": [
+          {
+            "InstanceType": "t2.xlarge",
+            "Price": 0.06778
+          },
+          {
+            "InstanceType": "t3a.xlarge",
+            "Price": 0.06799
+          },
+          {
+            "InstanceType": "t3.xlarge",
+            "Price": 0.06816
+          },
+          {
+            "InstanceType": "m5.xlarge",
+            "Price": 0.06993
+          },
+          {
+            "InstanceType": "m5zn.xlarge",
+            "Price": 0.07066
+          },
+          {
+            "InstanceType": "m5ad.xlarge",
+            "Price": 0.0752
+          },
+          {
+            "InstanceType": "m5dn.xlarge",
+            "Price": 0.08202
+          },
+          {
+            "InstanceType": "m5a.xlarge",
+            "Price": 0.08513
+          },
+          {
+            "InstanceType": "m5n.xlarge",
+            "Price": 0.08739
+          },
+          {
+            "InstanceType": "m5d.xlarge",
+            "Price": 0.09154
+          },
+          {
+            "InstanceType": "m4.xlarge",
+            "Price": 0.09309
+          }
+        ],
+        "TotalPrice": 0.25988500000000003
+      },
+      "OnDemandPrice": 0.192,
+      "SpotAvgPrice": 0.067885,
+      "SpotPrices": [
+        {
+          "InstanceType": "t2.xlarge",
+          "Price": 0.06778
+        },
+        {
+          "InstanceType": "t3a.xlarge",
+          "Price": 0.06799
+        },
+        {
+          "InstanceType": "t3.xlarge",
+          "Price": 0.06816
+        },
+        {
+          "InstanceType": "m5.xlarge",
+          "Price": 0.06993
+        },
+        {
+          "InstanceType": "m5zn.xlarge",
+          "Price": 0.07066
+        },
+        {
+          "InstanceType": "m5ad.xlarge",
+          "Price": 0.0752
+        },
+        {
+          "InstanceType": "m5dn.xlarge",
+          "Price": 0.08202
+        },
+        {
+          "InstanceType": "m5a.xlarge",
+          "Price": 0.08513
+        },
+        {
+          "InstanceType": "m5n.xlarge",
+          "Price": 0.08739
+        },
+        {
+          "InstanceType": "m5d.xlarge",
+          "Price": 0.09154
+        },
+        {
+          "InstanceType": "m4.xlarge",
+          "Price": 0.09309
+        }
+      ]
+    }
+  },
+  "spotisizeError": false,
+  "spotisizeErrorDesc": "",
+  "spotisizeNotSupported": false,
+  "subnetsDetails": {
+    "subnet-001fa9394041d8418": {
+      "availabilityZone": "eu-central-1b",
+      "cidr": "10.3.12.0/24",
+      "isDefault": false
+    },
+    "subnet-032de5793d4a7ae40": {
+      "availabilityZone": "eu-central-1a",
+      "cidr": "10.3.20.0/24",
+      "isDefault": false
+    },
+    "subnet-047cb652978ca2929": {
+      "availabilityZone": "eu-central-1c",
+      "cidr": "10.3.240.0/24",
+      "isDefault": false
+    },
+    "subnet-05b71d74bd8c94766": {
+      "availabilityZone": "eu-central-1a",
+      "cidr": "10.3.11.0/24",
+      "isDefault": false
+    },
+    "subnet-05ec173fc004e0e78": {
+      "availabilityZone": "eu-central-1a",
+      "cidr": "10.3.30.0/24",
+      "isDefault": false
+    },
+    "subnet-08da7922954ded203": {
+      "availabilityZone": "eu-central-1a",
+      "cidr": "10.3.33.0/24",
+      "isDefault": false
+    },
+    "subnet-094e71a38ec3b55eb": {
+      "availabilityZone": "eu-central-1a",
+      "cidr": "10.3.10.0/24",
+      "isDefault": false
+    },
+    "subnet-0e5027041158fcb63": {
+      "availabilityZone": "eu-central-1b",
+      "cidr": "10.3.32.0/24",
+      "isDefault": false
+    }
+  },
+  "timeCreated": {
+    "_nanoseconds": 881435000,
+    "_seconds": 1642164763
+  },
+  "timeModified": {
+    "_nanoseconds": 893430000,
+    "_seconds": 1642164851
+  },
+  "timeStartedUsingSpots": "2022-01-14T12:49:57.18Z"
+}

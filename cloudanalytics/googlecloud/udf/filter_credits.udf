@@ -1,0 +1,96 @@
+CREATE OR REPLACE FUNCTION `doitintl-cmp-gcp-data.gcp_billing.UDF_FILTER_CREDITS_V1BETA`(billing_account_id STRING, service_id STRING, usage_date_time DATETIME, credits ARRAY<STRUCT<name STRING, amount FLOAT64, full_name STRING, id STRING, type STRING>>, promotional_credits ARRAY<STRUCT<service_id STRING, credit_id STRING, credit_name STRING>>) RETURNS ARRAY<STRUCT<name STRING, amount FLOAT64, full_name STRING, id STRING, type STRING>> AS (
+ARRAY(
+    SELECT
+      STRUCT(
+      (CASE
+        WHEN
+          credit.type IS NULL AND
+          (EXISTS (SELECT pc.credit_name FROM UNNEST(promotional_credits) AS pc WHERE (pc.service_id IS NULL OR pc.service_id = service_id) AND REGEXP_CONTAINS(credit.name, pc.credit_id)))
+        THEN
+          (SELECT pc.credit_name FROM UNNEST(promotional_credits) AS pc WHERE (pc.service_id IS NULL OR pc.service_id = service_id) AND REGEXP_CONTAINS(credit.name, pc.credit_id) LIMIT 1)
+      ELSE
+        COALESCE(credit.full_name, credit.name)
+      END) AS name, credit.amount AS amount, credit.full_name AS full_name, credit.id AS id, credit.type AS type)
+    FROM
+      UNNEST(credits) AS credit
+    WHERE
+      IF (credit.type IS NULL,
+      -- If credit type is null (old credits)
+
+      -- SUD AND CUD
+      REGEXP_CONTAINS(credit.name, r"^Sustained Usage Discount$") OR
+      REGEXP_CONTAINS(credit.name, r"^Committed Usage Discount:") OR
+
+      -- General credits for different SKUs
+      REGEXP_CONTAINS(credit.name, r"(?i)^100% discount") OR
+      REGEXP_CONTAINS(credit.name, r"(?i)^Free tier discount") OR
+      REGEXP_CONTAINS(credit.name, r"(?i)^The usage is covered by") OR
+      REGEXP_CONTAINS(credit.name, r"(?i)will not be charged until") OR
+      REGEXP_CONTAINS(credit.name, r"(?i)pre-launch discount") OR
+      REGEXP_CONTAINS(credit.name, r"(?i)fully discounted while") OR
+      REGEXP_CONTAINS(credit.name, r"(?i)is planning to be charged in GA") OR
+
+      --  Storage and Maps credits
+      REGEXP_CONTAINS(credit.name, r"^Storage Growth Plan Deduction$") OR
+      REGEXP_CONTAINS(credit.name, r"^Maps Free Tier$") OR
+      REGEXP_CONTAINS(credit.name, r"^GEOTBC-TBC-[A-F0-9]{6}-[A-F0-9]{6}-[A-F0-9]{6}$") OR
+
+      -- Cloud Run And Cloud Functions
+      REGEXP_CONTAINS(credit.name, r"^(?:CPU Time|Memory Time|CPU Allocation Time|Memory Allocation Time)$") OR
+
+      --  Limited time credits
+      REGEXP_CONTAINS(credit.name, r"^Container image vulnerability scanning credit$") OR
+
+      -- Promotional Credits
+      (EXISTS (SELECT pc.credit_name FROM UNNEST(promotional_credits) AS pc WHERE (pc.service_id IS NULL OR pc.service_id = service_id) AND REGEXP_CONTAINS(credit.name, pc.credit_id)))
+      ,
+      -- If credit type is not null
+      credit.type != "RESELLER_MARGIN" AND (
+
+        -- Free tier, CUD and SUD are always approved
+        credit.type IN ("FREE_TIER", "COMMITTED_USAGE_DISCOUNT", "SUSTAINED_USAGE_DISCOUNT", "SUBSCRIPTION_BENEFIT") OR
+        REGEXP_CONTAINS(credit.type, "^COMMITTED_USAGE_DISCOUNT") OR
+
+        -- DoiT custom credits
+        credit.type = "doit" OR
+
+        -- Discount type credits
+        (
+          credit.type = "DISCOUNT" AND (
+            NOT REGEXP_CONTAINS(credit.id, "^Spending based discount")
+          )
+        ) OR
+
+        -- Promotion type credits
+        (
+          credit.type = "PROMOTION" AND (
+            -- Old Spend based CUDS
+            REGEXP_CONTAINS(credit.full_name, r"^Committed use discount") OR
+
+            -- Cloud bundles
+            REGEXP_CONTAINS(credit.full_name, r"^Cloud Bundle") OR
+
+            -- Trials
+            REGEXP_CONTAINS(credit.full_name, r"^Trial for") OR
+
+            -- Trials
+            REGEXP_CONTAINS(credit.full_name, r".* Trial$") OR
+
+            -- AutoML
+            REGEXP_CONTAINS(credit.full_name, r"^AutoML .* (Training|Prediction)$") OR
+
+            -- GFS Cloud Credits
+            (
+              REGEXP_CONTAINS(credit.full_name, r"(?i)\s*GFS\s*") AND
+              IF(
+                billing_account_id IN ("01C6F1-EFD83A-5584C2", "012641-D66AD4-C0AC23", "01CF25-E782F4-1F0762"),
+                usage_date_time >= DATE("2024-01-01"),
+                usage_date_time >= DATE("2024-02-01")
+              )
+            )
+          )
+        )
+      )
+    )
+  )
+);

@@ -1,0 +1,21 @@
+CREATE MATERIALIZED VIEW doitintl-cmp-gcp-data.gcp_billing.gcp_billing_skus_metadata_v1
+CLUSTER BY service_id, sku_id
+AS (
+
+    SELECT
+      service.id AS service_id,
+      sku.id AS sku_id,
+      LOGICAL_OR(
+        IFNULL(REGEXP_CONTAINS(ARRAY_TO_STRING(product_taxonomy, " > "), "(?i)marketplace"), FALSE)
+      ) AS is_marketplace,
+      LOGICAL_OR(
+        IFNULL(REGEXP_CONTAINS(ARRAY_TO_STRING(product_taxonomy, " > "), "(?i)preemptible"), FALSE)
+      ) AS is_preemptible,
+      LOGICAL_OR(
+        IFNULL(REGEXP_CONTAINS(ARRAY_TO_STRING(product_taxonomy, " > "), "(?i)premium image"), FALSE)
+      ) AS is_premium_image,
+    FROM
+      `billing-explorer.gcp.cloud_pricing_export`
+    GROUP BY 1,2
+
+)

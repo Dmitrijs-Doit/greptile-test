@@ -1,0 +1,23 @@
+{
+  "Statement": [
+    {
+      "Sid": "OrganizationAccountAccessRole",
+      "Effect": "Allow",
+      "Action": ["sts:AssumeRole"],
+      "Resource": "arn:aws:iam::*:role/OrganizationAccountAccessRole"
+    },
+    {
+      "Sid": "Organizations",
+      "Effect": "Allow",
+      "Action": ["organizations:CreateAccount", "organizations:InviteAccountToOrganization"],
+      "Resource": "*"
+    },
+    {
+      "Sid": "BillingCMP",
+      "Effect": "Allow",
+      "Action": ["ce:UpdateCostAllocationTagsStatus"],
+      "Resource": "*"
+    }
+  ],
+  "Version": "2012-10-17"
+}

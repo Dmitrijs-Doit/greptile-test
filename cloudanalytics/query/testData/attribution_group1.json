@@ -1,0 +1,133 @@
+{
+  "id": "attributionGroup:10pEZalkOeXgjQp92tHI",
+  "type": "attribution_group",
+  "key": "10pEZalkOeXgjQp92tHI",
+  "includeInFilter": true,
+  "attributions": [
+    {
+      "id": "attribution:uiKfGc78lZgY8mJnIAfK",
+      "type": "attribution",
+      "key": "Bruteforce",
+      "includeInFilter": true,
+      "composite": [
+        {
+          "regexp": null,
+          "field": "T.project.ancestry_names",
+          "id": "fixed:project_ancestry_names",
+          "allowNull": false,
+          "inverse": false,
+          "key": "project_ancestry_names",
+          "values": ["/taboola.com/Data Engineering/", "/taboola.com/IT Systems/", "/252201914815/457639101977/"],
+          "type": "fixed"
+        },
+        {
+          "allowNull": false,
+          "id": "fixed:cloud_provider",
+          "regexp": null,
+          "field": "T.cloud_provider",
+          "values": ["google-cloud"],
+          "type": "fixed",
+          "inverse": false,
+          "key": "cloud_provider"
+        }
+      ],
+      "formula": "A AND B"
+    },
+    {
+      "id": "attribution:8InVN9V8uJHF7iqd7Z2Y",
+      "type": "attribution",
+      "key": "Gigabright",
+      "includeInFilter": true,
+      "composite": [
+        {
+          "field": "T.location.region",
+          "inverse": false,
+          "id": "fixed:region",
+          "allowNull": false,
+          "type": "fixed",
+          "key": "region",
+          "regexp": null,
+          "values": [
+            "europe-north1",
+            "europe-west1",
+            "europe-west2",
+            "europe-west3",
+            "europe-west4",
+            "us-central3",
+            "us-central2",
+            "us-central1"
+          ]
+        },
+        {
+          "field": "T.location.zone",
+          "key": "zone",
+          "regexp": null,
+          "id": "fixed:zone",
+          "inverse": false,
+          "type": "fixed",
+          "values": ["us-east4-a", "us-central1-a", "us-central1-c"],
+          "allowNull": false
+        }
+      ],
+      "formula": "A AND B"
+    },
+    {
+      "id": "attribution:YTyiPPSwWSV9OybA3XRI",
+      "type": "attribution",
+      "key": "Kraken",
+      "includeInFilter": true,
+      "composite": [
+        {
+          "type": "fixed",
+          "inverse": false,
+          "values": [
+            "04C4-B046-D8B2",
+            "149C-F9EC-3994",
+            "152E-C115-5142",
+            "1C58-CF90-9614",
+            "1DB1-3CD3-35A3",
+            "22vojj0fp2kwh56g4ax2u8buj",
+            "24E6-581D-38E5",
+            "2662-232A-AC11",
+            "29E7-DA93-CA13",
+            "363B-8851-170D",
+            "5321-225F-966F",
+            "5490-F7B7-8DF6",
+            "58CD-E7C3-72CA",
+            "6F81-5844-456A",
+            "8CD0-2A17-0B05",
+            "95FF-2EF5-5EA1",
+            "9662-B51E-5089",
+            "9B82-7513-9D1C",
+            "A1E8-BE35-7EBC",
+            "C08E-37B9-80D3",
+            "CAE2-A537-4A95",
+            "CCD8-9BF1-090E",
+            "DCC9-8DB9-673F",
+            "E505-1604-58F8",
+            "EE2F-D110-890C",
+            "EE82-7A5E-871C",
+            "F17B-412E-CB64",
+            "FA26-5236-B8B5"
+          ],
+          "id": "fixed:service_id",
+          "regexp": null,
+          "key": "service_id",
+          "allowNull": false,
+          "field": "T.service_id"
+        },
+        {
+          "regexp": null,
+          "type": "fixed",
+          "field": "T.billing_account_id",
+          "values": ["006C3F-3613C3-8C2169"],
+          "allowNull": false,
+          "inverse": false,
+          "key": "billing_account_id",
+          "id": "fixed:billing_account_id"
+        }
+      ],
+      "formula": "A AND B"
+    }
+  ]
+}

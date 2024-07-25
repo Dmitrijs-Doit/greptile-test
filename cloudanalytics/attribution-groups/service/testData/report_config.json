@@ -1,0 +1,47 @@
+{
+  "features": [],
+  "customTimeRange": null,
+  "currency": "USD",
+  "metric": 0,
+  "optional": [
+    {
+      "type": "metric",
+      "key": ""
+    },
+    {
+      "type": "limits",
+      "key": ""
+    }
+  ],
+  "logScale": false,
+  "count": null,
+  "mode": "all",
+  "cols": ["datetime:year", "datetime:month", "datetime:day"],
+  "renderer": "stacked_column_chart",
+  "rowOrder": "asc",
+  "timeSettings": {
+    "mode": "last",
+    "amount": 7,
+    "unit": "day",
+    "includeCurrent": true
+  },
+  "calculatedMetric": null,
+  "filters": [
+    {
+      "values": ["YTyiPPSwWSV9OybA3XRI"],
+      "limitOrder": null,
+      "regexp": null,
+      "id": "attribution_group:zY0EMISuSUs8FpMahUfD",
+      "limit": null,
+      "inverse": false,
+      "limitMetric": null
+    }
+  ],
+  "comparative": null,
+  "colOrder": "a_to_z",
+  "timeInterval": "day",
+  "rows": ["attribution_group:zY0EMISuSUs8FpMahUfD"],
+  "aggregator": "total",
+  "metricFilters": [],
+  "includeCredits": false
+}

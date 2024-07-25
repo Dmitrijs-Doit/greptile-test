@@ -1,0 +1,33 @@
+{
+  "State": "fbod",
+  "PrevState": "fbod",
+  "Action": "Leave on demand base capacity unchanged",
+  "ActualCapacity": 2,
+  "DesiredCapacity": 2,
+  "OdBaseCapacity": 0,
+  "OriginalOdBaseCapacity": 0,
+  "Event": {
+    "id": "e0a0c38b-e4f2-afc6-80a2-ab1d53e0fc77",
+    "detail-type": "Schedule task watchdog",
+    "source": "aws.autoscaling - test",
+    "account": "126166551120",
+    "region": "us-east-1",
+    "detail": {
+      "StatusCode": "Failed",
+      "AutoScalingGroupName": "CF_ASG_NO_TAGS_YARIV",
+      "ActivityID": "51560873-8a48-cf60-5414-ca166c08b0f5",
+      "RequestId": "51560873-8a48-cf60-5414-ca166c08b0f5",
+      "Description": "Launching a new EC2 instance.  Status Reason: Could not launch Spot Instances. UnfulfillableCapacity - Unable to fulfill capacity due to your request configuration. Please adjust your request and try again. Launching EC2 instance failed.",
+      "StatusMessage": "Could not launch Spot Instances. UnfulfillableCapacity - Unable to fulfill capacity due to your request configuration. Please adjust your request and try again. Launching EC2 instance failed.",
+      "StartTime": "2022-07-20T18:33:06.867Z",
+      "EndTime": "2022-07-20T18:33:06.000Z",
+      "Cause": "At 2022-07-20T18:33:04Z an instance was launched in response to an EC2 instance rebalance recommendation.",
+      "Details": {
+        "Availability Zone": "us-east-1b",
+        "Subnet ID": "subnet-05c10d2bf11e02ed8"
+      }
+    }
+  },
+  "TimeCreated": "2023-08-09T14:13:44.861014Z",
+  "TimeUpdated": "2023-08-15T09:45:06.860376Z"
+}

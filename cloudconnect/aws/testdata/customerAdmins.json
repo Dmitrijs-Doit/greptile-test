@@ -1,0 +1,176 @@
+[
+  {
+    "Customer": {
+      "Ref": {
+        "Parent": {
+          "Parent": null,
+          "Path": "projects/doitintl-cmp-spot0-dev/databases/(default)/documents/customers",
+          "ID": "customers"
+        },
+        "Path": "projects/doitintl-cmp-spot0-dev/databases/(default)/documents/customers/EE8CtpzYiKp0dVAESVrB",
+        "ID": "EE8CtpzYiKp0dVAESVrB"
+      },
+      "Name": "DoiT International",
+      "LowerName": "doit international"
+    },
+    "Domain": "gdemo.co.il",
+    "Entities": [],
+    "Enrichment": {},
+    "Permissions": null,
+    "Notifications": [7, 1, 2],
+    "Role": null,
+    "JobFunction": 7,
+    "Email": "admin@gdemo.co.il",
+    "DisplayName": "Harry Potter",
+    "FirstName": "harry",
+    "LastName": "potter",
+    "Roles": [
+      {
+        "Parent": {
+          "Parent": null,
+          "Path": "projects/doitintl-cmp-spot0-dev/databases/(default)/documents/roles",
+          "ID": "roles"
+        },
+        "Path": "projects/doitintl-cmp-spot0-dev/databases/(default)/documents/roles/59w2TJPTCa3XPsJ3KITY",
+        "ID": "59w2TJPTCa3XPsJ3KITY"
+      }
+    ],
+    "AccessKey": "",
+    "Organizations": null,
+    "EmailNotifications": null,
+    "DailyDigests": null,
+    "TermsOfService": null,
+    "ID": ""
+  },
+  {
+    "Customer": {
+      "Ref": {
+        "Parent": {
+          "Parent": null,
+          "Path": "projects/doitintl-cmp-spot0-dev/databases/(default)/documents/customers",
+          "ID": "customers"
+        },
+        "Path": "projects/doitintl-cmp-spot0-dev/databases/(default)/documents/customers/EE8CtpzYiKp0dVAESVrB",
+        "ID": "EE8CtpzYiKp0dVAESVrB"
+      },
+      "Name": "DoiT International",
+      "LowerName": "doit international"
+    },
+    "Domain": "doit-intl.com",
+    "Entities": [],
+    "Enrichment": {},
+    "Permissions": null,
+    "Notifications": [7],
+    "Role": null,
+    "JobFunction": null,
+    "Email": "sebastian+doit-intl@doit-intl.com",
+    "DisplayName": "Sebastian",
+    "FirstName": "Sebastian",
+    "LastName": "",
+    "Roles": [
+      {
+        "Parent": {
+          "Parent": null,
+          "Path": "projects/doitintl-cmp-spot0-dev/databases/(default)/documents/roles",
+          "ID": "roles"
+        },
+        "Path": "projects/doitintl-cmp-spot0-dev/databases/(default)/documents/roles/59w2TJPTCa3XPsJ3KITY",
+        "ID": "59w2TJPTCa3XPsJ3KITY"
+      }
+    ],
+    "AccessKey": "",
+    "Organizations": null,
+    "EmailNotifications": null,
+    "DailyDigests": null,
+    "TermsOfService": null,
+    "ID": ""
+  },
+  {
+    "Customer": {
+      "Ref": {
+        "Parent": {
+          "Parent": null,
+          "Path": "projects/doitintl-cmp-spot0-dev/databases/(default)/documents/customers",
+          "ID": "customers"
+        },
+        "Path": "projects/doitintl-cmp-spot0-dev/databases/(default)/documents/customers/EE8CtpzYiKp0dVAESVrB",
+        "ID": "EE8CtpzYiKp0dVAESVrB"
+      },
+      "Name": "DoiT International",
+      "LowerName": "doit international"
+    },
+    "Domain": "gmail.com",
+    "Entities": [],
+    "Enrichment": {},
+    "Permissions": null,
+    "Notifications": [7],
+    "Role": null,
+    "JobFunction": null,
+    "Email": "royleraider@gmail.com",
+    "DisplayName": "Michael Royle",
+    "FirstName": "michael",
+    "LastName": "royle",
+    "Roles": [
+      {
+        "Parent": {
+          "Parent": null,
+          "Path": "projects/doitintl-cmp-spot0-dev/databases/(default)/documents/roles",
+          "ID": "roles"
+        },
+        "Path": "projects/doitintl-cmp-spot0-dev/databases/(default)/documents/roles/59w2TJPTCa3XPsJ3KITY",
+        "ID": "59w2TJPTCa3XPsJ3KITY"
+      }
+    ],
+    "AccessKey": "",
+    "Organizations": null,
+    "EmailNotifications": null,
+    "DailyDigests": null,
+    "TermsOfService": null,
+    "ID": ""
+  },
+  {
+    "Customer": {
+      "Ref": {
+        "Parent": {
+          "Parent": null,
+          "Path": "projects/doitintl-cmp-spot0-dev/databases/(default)/documents/customers",
+          "ID": "customers"
+        },
+        "Path": "projects/doitintl-cmp-spot0-dev/databases/(default)/documents/customers/EE8CtpzYiKp0dVAESVrB",
+        "ID": "EE8CtpzYiKp0dVAESVrB"
+      },
+      "Name": "DoiT International",
+      "LowerName": "doit international"
+    },
+    "Domain": "doitintl.onmicrosoft.com",
+    "Entities": [],
+    "Enrichment": {
+      "test": 1
+    },
+    "Permissions": null,
+    "Notifications": [7],
+    "Role": "",
+    "JobFunction": null,
+    "Email": "dror@doitintl.onmicrosoft.com",
+    "DisplayName": "Dror Levy",
+    "FirstName": "dror",
+    "LastName": "levy",
+    "Roles": [
+      {
+        "Parent": {
+          "Parent": null,
+          "Path": "projects/doitintl-cmp-spot0-dev/databases/(default)/documents/roles",
+          "ID": "roles"
+        },
+        "Path": "projects/doitintl-cmp-spot0-dev/databases/(default)/documents/roles/59w2TJPTCa3XPsJ3KITY",
+        "ID": "59w2TJPTCa3XPsJ3KITY"
+      }
+    ],
+    "AccessKey": "",
+    "Organizations": null,
+    "EmailNotifications": null,
+    "DailyDigests": null,
+    "TermsOfService": null,
+    "ID": ""
+  }
+]

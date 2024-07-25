@@ -1,0 +1,7 @@
+{
+  "eventId": "30d3fc81-ae49-4fa7-9ce0-a49020db0222",
+  "eventType": "CMP_ENTITLEMENT_APPROVE_REQUESTED",
+  "entitlement": {
+    "id": "7cd32cd0-5cb3-4bbe-bd58-35ce492d9906"
+  }
+}

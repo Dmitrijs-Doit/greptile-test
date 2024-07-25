@@ -1,0 +1,5 @@
+# Gets the list of AWS services customers used in the current month
+SELECT billing_account_id,  ARRAY_AGG(DISTINCT CONCAT(service_id, ',', service_description)) AS services
+FROM `doitintl-cmp-aws-data.aws_billing.doitintl_billing_export_v1`
+WHERE DATE(export_time) >= DATE_TRUNC(CURRENT_DATE(), MONTH) AND cost > 0
+GROUP BY billing_account_id

@@ -1,0 +1,131 @@
+{
+  "AutoScalingGroupARN": "arn:aws:autoscaling:us-east-1:126166551120:autoScalingGroup:b6c3b5ea-3e78-472a-bd3b-ae1905459bc8:autoScalingGroupName/CF_ASG_NO_TAGS_YARIV",
+  "AutoScalingGroupName": "CF_ASG_NO_TAGS_YARIV",
+  "AvailabilityZones": ["us-east-1a", "us-east-1b", "us-east-1c", "us-east-1d", "us-east-1e"],
+  "CapacityRebalance": true,
+  "Context": null,
+  "CreatedTime": "2022-09-01T13:40:23.478Z",
+  "DefaultCooldown": 300,
+  "DefaultInstanceWarmup": null,
+  "DesiredCapacity": 2,
+  "DesiredCapacityType": null,
+  "EnabledMetrics": null,
+  "HealthCheckGracePeriod": 0,
+  "HealthCheckType": "EC2",
+  "Instances": [
+    {
+      "AvailabilityZone": "us-east-1b",
+      "HealthStatus": "Healthy",
+      "InstanceId": "i-0219f054b28034090",
+      "InstanceType": "t3.medium",
+      "LaunchConfigurationName": null,
+      "LaunchTemplate": {
+        "LaunchTemplateId": "lt-010176317ab942f96",
+        "LaunchTemplateName": "CF-ASG-NO-TAGS-YARIV-launch-template",
+        "Version": "1"
+      },
+      "LifecycleState": "InService",
+      "ProtectedFromScaleIn": false,
+      "WeightedCapacity": "1"
+    },
+    {
+      "AvailabilityZone": "us-east-1e",
+      "HealthStatus": "Healthy",
+      "InstanceId": "i-0e4543664b2c1e8fc",
+      "InstanceType": "t2.medium",
+      "LaunchConfigurationName": null,
+      "LaunchTemplate": {
+        "LaunchTemplateId": "lt-010176317ab942f96",
+        "LaunchTemplateName": "CF-ASG-NO-TAGS-YARIV-launch-template",
+        "Version": "1"
+      },
+      "LifecycleState": "InService",
+      "ProtectedFromScaleIn": false,
+      "WeightedCapacity": "1"
+    }
+  ],
+  "LaunchConfigurationName": null,
+  "LaunchTemplate": null,
+  "LoadBalancerNames": null,
+  "MaxInstanceLifetime": null,
+  "MaxSize": 8,
+  "MinSize": 0,
+  "MixedInstancesPolicy": {
+    "InstancesDistribution": {
+      "OnDemandAllocationStrategy": "prioritized",
+      "OnDemandBaseCapacity": 2,
+      "OnDemandPercentageAboveBaseCapacity": 20,
+      "SpotAllocationStrategy": "capacity-optimized",
+      "SpotInstancePools": null,
+      "SpotMaxPrice": null
+    },
+    "LaunchTemplate": {
+      "LaunchTemplateSpecification": {
+        "LaunchTemplateId": "lt-010176317ab942f96",
+        "LaunchTemplateName": "CF-ASG-NO-TAGS-YARIV-launch-template",
+        "Version": "1"
+      },
+      "Overrides": [
+        {
+          "InstanceRequirements": null,
+          "InstanceType": "t3.medium",
+          "LaunchTemplateSpecification": null,
+          "WeightedCapacity": "1"
+        },
+        {
+          "InstanceRequirements": null,
+          "InstanceType": "t3a.medium",
+          "LaunchTemplateSpecification": null,
+          "WeightedCapacity": "1"
+        },
+        {
+          "InstanceRequirements": null,
+          "InstanceType": "t2.medium",
+          "LaunchTemplateSpecification": null,
+          "WeightedCapacity": "1"
+        },
+        {
+          "InstanceRequirements": null,
+          "InstanceType": "m1.large",
+          "LaunchTemplateSpecification": null,
+          "WeightedCapacity": "1"
+        }
+      ]
+    }
+  },
+  "NewInstancesProtectedFromScaleIn": false,
+  "PlacementGroup": null,
+  "PredictedCapacity": null,
+  "ServiceLinkedRoleARN": "arn:aws:iam::126166551120:role/aws-service-role/autoscaling.amazonaws.com/AWSServiceRoleForAutoScaling",
+  "Status": null,
+  "SuspendedProcesses": null,
+  "Tags": [
+    {
+      "Key": "aws:cloudformation:logical-id",
+      "PropagateAtLaunch": true,
+      "ResourceId": "CF_ASG_NO_TAGS_YARIV",
+      "ResourceType": "auto-scaling-group",
+      "Value": "myASG"
+    },
+    {
+      "Key": "aws:cloudformation:stack-id",
+      "PropagateAtLaunch": true,
+      "ResourceId": "CF_ASG_NO_TAGS_YARIV",
+      "ResourceType": "auto-scaling-group",
+      "Value": "arn:aws:cloudformation:us-east-1:126166551120:stack/CF-ASG-NO-TAGS-YARIV/958fc1f0-29fb-11ed-9689-0ef89a340529"
+    },
+    {
+      "Key": "aws:cloudformation:stack-name",
+      "PropagateAtLaunch": true,
+      "ResourceId": "CF_ASG_NO_TAGS_YARIV",
+      "ResourceType": "auto-scaling-group",
+      "Value": "CF-ASG-NO-TAGS-YARIV"
+    }
+  ],
+  "TargetGroupARNs": null,
+  "TerminationPolicies": ["Default"],
+  "TrafficSources": null,
+  "VPCZoneIdentifier": "subnet-0832e45ecdd93fe2e,subnet-0e1a99b4d50653921,subnet-007cb82ea6eb98ae5,subnet-05c10d2bf11e02ed8,subnet-06084a5dd219ee6b9",
+  "WarmPoolConfiguration": null,
+  "WarmPoolSize": null
+}

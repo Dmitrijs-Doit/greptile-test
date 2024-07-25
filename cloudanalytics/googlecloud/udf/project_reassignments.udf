@@ -1,0 +1,18 @@
+CREATE OR REPLACE FUNCTION `doitintl-cmp-gcp-data.gcp_billing.UDF_PROJECT_REASSIGNMENTS_V1`(billing_account_id STRING, project_id STRING, usage_start_time TIMESTAMP) RETURNS STRING AS (
+CASE
+      WHEN 
+        billing_account_id = "0017CB-FA28FE-1B0287" AND project_id = "protected-cdn" 
+      THEN
+        "01AF45-2A92B0-F183B9"
+      WHEN
+        billing_account_id = "008F2C-B38BBB-365A0F" AND project_id = "etorox-production"
+      THEN
+        "01E877-B408CE-B80CB9"
+      WHEN
+        billing_account_id = "008F2C-B38BBB-365A0F" AND project_id = "etorox-stage"
+      THEN
+        "01E877-B408CE-B80CB9"
+      ELSE 
+        billing_account_id
+    END
+);

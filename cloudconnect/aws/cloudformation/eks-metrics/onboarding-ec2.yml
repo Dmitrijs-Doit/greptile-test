@@ -1,0 +1,174 @@
+Description: This template creates a role to allow EKS metrics export.
+Parameters:
+  EKSClusterName:
+    Type: String
+    Description: Customer ID for Cross-Account-Role
+  RoleName:
+    Type: String
+    Description: New Role Name
+  S3Bucket:
+    Type: String
+    Description: Bucket Name
+  CreateIAMPolicy:
+    Description: Create DoiT role and policy - for the first cluster installation only.
+    Default: false
+    Type: String
+    AllowedValues:
+      - false
+      - true
+  IsCreateBucket:
+    Description: Is Create Bucket
+    Default: true
+    Type: String
+    AllowedValues:
+      - false
+      - true
+Conditions:
+  CreateIAMPolicy: !Equals
+    - !Ref CreateIAMPolicy
+    - true
+  CreateRoleOnly: !Equals
+    - !Ref CreateIAMPolicy
+    - false
+  IsCreateBucket: !Equals
+    - !Ref IsCreateBucket
+    - true
+Metadata:
+  AWS::CloudFormation::Interface:
+    ParameterGroups:
+      - Label:
+          default: "Cross-Account Role Configuration.  *Do Not Modify*"
+        Parameters:
+          - EKSClusterName
+          # - DoitNamespace
+          # - EksServiceAccount
+          # - PolicyName
+          - RoleName
+          - S3Bucket
+Resources:
+  # role resource
+  CrossAccountRole:
+    Condition: CreateIAMPolicy
+    Type: "AWS::IAM::Role"
+    Properties:
+      Description: DoiT International EKS Metrics export
+      RoleName: !Ref "RoleName"
+      AssumeRolePolicyDocument:
+        Statement:
+          - Action:
+              - "sts:AssumeRole"
+            Effect: Allow
+            Principal:
+              AWS: !Sub arn:aws:iam::068664126052:root
+            Sid: "Management"
+        Version: "2012-10-17"
+      Path: "/"
+
+  # role resource2 - when policy exists
+  CrossAccountRole2:
+    Condition: CreateRoleOnly
+    Type: "AWS::IAM::Role"
+    Properties:
+      Description: DoiT International EKS Metrics export
+      RoleName: !Ref "RoleName"
+      ManagedPolicyArns:
+        - !Sub "arn:aws:iam::${AWS::AccountId}:policy/doitintl_eks_s3"
+      AssumeRolePolicyDocument:
+        Statement:
+          - Action:
+              - "sts:AssumeRole"
+            Effect: Allow
+            Principal:
+              AWS: !Sub arn:aws:iam::068664126052:root
+            Sid: "Management"
+        Version: "2012-10-17"
+      Path: "/"
+
+  # AllowAssume role
+  DoitCrossAccountRole:
+    Type: "AWS::IAM::Role"
+    Condition: CreateIAMPolicy
+    Properties:
+      Description: DoiT International EKS Metrics Import
+      RoleName: "doitintl_eks_import"
+      AssumeRolePolicyDocument:
+        Statement:
+          - Action:
+              - "sts:AssumeRole"
+            Effect: Allow
+            Principal:
+              AWS: !Sub arn:aws:iam::068664126052:root
+            Sid: "Management"
+        Version: "2012-10-17"
+      Path: "/"
+
+  # create bucket for store metrics data
+  EKSBucket:
+    Type: "AWS::S3::Bucket"
+    Condition: IsCreateBucket
+    Properties:
+      BucketName: !Ref S3Bucket
+      LifecycleConfiguration:
+        Rules:
+          - Id: ExpiredDocumentsRule
+            Status: Enabled
+            ExpirationInDays: 7
+            AbortIncompleteMultipartUpload:
+              DaysAfterInitiation: 7
+
+  # policy resource
+  EksS3Policy:
+    Condition: CreateIAMPolicy
+    Type: AWS::IAM::ManagedPolicy
+    Properties:
+      ManagedPolicyName: doitintl_eks_s3
+      PolicyDocument:
+        Version: 2012-10-17
+        Statement:
+          - Effect: Allow
+            Sid: S3BucketList
+            Action:
+              - s3:ListBucket
+            Resource: !Sub
+              - "arn:aws:s3:::doitintl-eks-metrics-*"
+              - BucketName: !Ref S3Bucket
+          - Effect: Allow
+            Sid: S3BucketModify
+            Action:
+              - s3:PutObject
+              - s3:GetObject
+            Resource: !Sub
+              - "arn:aws:s3:::doitintl-eks-metrics-*/*"
+              - BucketName: !Ref S3Bucket
+      Roles:
+        - !Ref CrossAccountRole
+        - !Ref DoitCrossAccountRole
+
+  DoitCmpHook:
+    Type: Custom::DoitCmpHook
+    Properties:
+      AccountID: !Ref "AWS::AccountId"
+      ExternalID: !Ref "EKSClusterName"
+      ServiceToken:
+        Fn::Sub:
+          - arn:aws:sns:${Region}:068664126052:doitintl-aws-connect
+          - Region: !Ref "AWS::Region"
+      NotificationUrl: "https://scheduled-tasks-dot-me-doit-intl-com.uc.r.appspot.com/webhooks/v1/eks-metrics/update-eks"
+      EKSClusterName: !Ref "EKSClusterName"
+      # DoitNamespace: !Ref 'DoitNamespace'
+      DoitNamespace: "doit-eks-metrics"
+      # EksServiceAccount: !Ref 'EksServiceAccount'
+      EksServiceAccount: "doit-collector"
+      # PolicyName: !Ref 'PolicyName'
+      RoleName: !Ref "RoleName"
+      PolicyName: "doitintl_eks_metrics"
+      S3Bucket: !Ref "S3Bucket"
+    Version: "1.0"
+
+Outputs:
+  RoleName:
+    Condition: CreateIAMPolicy
+    Value: !Ref CrossAccountRole
+  RoleArn:
+    Condition: CreateIAMPolicy
+    Value: !GetAtt CrossAccountRole.Arn

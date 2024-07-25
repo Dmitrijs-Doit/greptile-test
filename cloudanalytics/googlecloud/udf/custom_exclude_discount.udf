@@ -1,0 +1,55 @@
+CREATE OR REPLACE FUNCTION `doitintl-cmp-gcp-data.gcp_billing.UDF_CUSTOM_EXCLUDE_DISCOUNT_V1BETA`(service_id STRING, sku_id STRING, sku_description STRING, usage_date DATE) RETURNS BOOL AS (
+CASE
+    -- Exclude "Looker" service
+    WHEN service_id = "C71C-0952-AAC7" THEN TRUE
+
+    -- Exclude "Support" service
+    WHEN service_id = "2062-016F-44A2" THEN TRUE
+
+    -- Exclude "Custom Search" service
+    WHEN service_id = "4550-691F-6425" THEN TRUE
+
+    -- Exclude "Google Maps" services
+    WHEN service_id IN (
+      "0161-1616-FF1D",	-- Google Maps Platform - Routes
+      "0245-C3C9-3864",	-- Geolocation API
+      "0668-1E34-4273",	-- Maps JavaScript API
+      "0776-5E2E-55E3",	-- Places API
+      "0AC2-4B25-C429",	-- Geocoding API
+      "0BE7-6F69-2E31",	-- Google Maps Android API
+      "11F2-A380-6357",	-- Maps Elevation API
+      "1310-E32E-D130",	-- Places API for Android
+      "13B7-77B5-3D2B",	-- Google Maps Platform Solar Service
+      "1934-AA85-20F9",	-- Maps API
+      "213C-9623-1402",	-- Places API
+      "3679-7487-549C",	-- Roads API
+      "4C9F-C607-345D",	-- Aerial View API
+      "50C8-D359-64EA",	-- Google Maps Mobile SDK
+      "683C-45E1-DE5B",	-- Maps Embed API
+      "8356-8DF5-0170",	-- Earth Engine
+      "8C3B-F556-9F01",	-- Google Maps Tile API
+      "8E74-C4E3-1D5B",	-- Places API for iOS
+      "916C-61AA-8E54",	-- Google Maps Platform Air Quality Service
+      "9208-3D32-4342",	-- Street View Static API
+      "A44A-9EBB-B11F",	-- Zagat content in the Places API
+      "B7D9-FDCB-15D8",	-- Directions API
+      "BBEE-7ECA-3FE8",	-- Google Maps Platform - Mobility Billing
+      "C04A-0B58-048A",	-- Address Validation API
+      "C250-726E-A553",	-- Time Zone API
+      "C3D5-FEBD-D2A4",	-- Aerial View
+      "CF79-2786-ADFC",	-- Maps Static API
+      "D204-FBBE-8B68",	-- Maps SDK for Unity
+      "DF2C-FBCA-3DFB",	-- Google Maps Platform Pollen Service
+      "E1D8-71A6-53DE",	-- Distance Matrix API
+      "E283-B22D-2BA2",	-- Google Maps SDK for iOS
+      "F693-D53B-4ACE",	-- Navigation API
+      "FD92-2C67-E7E8"	-- Google Maps Platform Rides and Deliveries Service
+    ) THEN TRUE
+
+    -- Exclude spend based Dollar-based committed use discounts (e.g. Cloud SQL CUDs) from Nov 1st, 2021
+    WHEN usage_date >= DATE("2021-11-01") AND REGEXP_CONTAINS(sku_description, r"(?i)Commitment - dollar based")
+    THEN TRUE
+
+    ELSE FALSE
+  END
+);

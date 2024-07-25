@@ -1,0 +1,72 @@
+package service
+
+import "cloud.google.com/go/bigquery"
+
+// ContractSchema : BigQuery schema for the contract table
+var ContractsTableSchema = bigquery.Schema{
+	{Name: "id", Type: bigquery.StringFieldType},
+	{Name: "type", Type: bigquery.StringFieldType},
+	{Name: "customer", Type: bigquery.StringFieldType},
+	{Name: "entity", Type: bigquery.StringFieldType},
+	{Name: "assets", Type: bigquery.StringFieldType, Repeated: true},
+	{Name: "active", Type: bigquery.BooleanFieldType},
+	{Name: "isCommitment", Type: bigquery.BooleanFieldType},
+	{Name: "commitmentPeriods", Type: bigquery.RecordFieldType, Repeated: true, Schema: bigquery.Schema{
+		{Name: "value", Type: bigquery.FloatFieldType},
+		{Name: "startDate", Type: bigquery.TimestampFieldType},
+		{Name: "endDate", Type: bigquery.TimestampFieldType},
+		{Name: "discount", Type: bigquery.FloatFieldType},
+	}},
+	{Name: "commitmentRollover", Type: bigquery.BooleanFieldType},
+	{Name: "discount", Type: bigquery.FloatFieldType},
+	{Name: "estimatedValue", Type: bigquery.FloatFieldType},
+	{Name: "startDate", Type: bigquery.TimestampFieldType},
+	{Name: "endDate", Type: bigquery.TimestampFieldType},
+	{Name: "contractFile", Type: bigquery.RecordFieldType, Schema: bigquery.Schema{
+		{Name: "id", Type: bigquery.StringFieldType},
+		{Name: "name", Type: bigquery.StringFieldType},
+		{Name: "parentID", Type: bigquery.StringFieldType},
+		{Name: "storage", Type: bigquery.StringFieldType},
+		{Name: "url", Type: bigquery.StringFieldType},
+	}},
+	{Name: "timestamp", Type: bigquery.TimestampFieldType},
+	{Name: "timeCreated", Type: bigquery.TimestampFieldType},
+	{Name: "accountManager", Type: bigquery.StringFieldType},
+	{Name: "notes", Type: bigquery.StringFieldType},
+	{Name: "purchaseOrder", Type: bigquery.StringFieldType},
+	{Name: "isRenewal", Type: bigquery.BooleanFieldType},
+	{Name: "updatedBy", Type: bigquery.RecordFieldType, Schema: bigquery.Schema{
+		{Name: "email", Type: bigquery.StringFieldType},
+		{Name: "name", Type: bigquery.StringFieldType},
+	}},
+	{Name: "discountEndDate", Type: bigquery.TimestampFieldType},
+	{Name: "billingData", Type: bigquery.RecordFieldType, Repeated: true, Schema: bigquery.Schema{
+		{Name: "month", Type: bigquery.StringFieldType},
+		{Name: "baseFee", Type: bigquery.FloatFieldType},
+		{Name: "consumption", Type: bigquery.RecordFieldType, Repeated: true, Schema: bigquery.Schema{
+			{Name: "cloud", Type: bigquery.StringFieldType},
+			{Name: "currency", Type: bigquery.StringFieldType},
+			{Name: "final", Type: bigquery.BooleanFieldType},
+			{Name: "variableFee", Type: bigquery.FloatFieldType},
+		}},
+		{Name: "final", Type: bigquery.BooleanFieldType},
+		{Name: "lastUpdateDate", Type: bigquery.StringFieldType},
+	}},
+	{Name: "tier", Type: bigquery.StringFieldType},
+	{Name: "pointOfSale", Type: bigquery.StringFieldType},
+	{Name: "paymentTerm", Type: bigquery.StringFieldType},
+	{Name: "commitmentMonths", Type: bigquery.FloatFieldType},
+	{Name: "chargePerTerm", Type: bigquery.FloatFieldType},
+	{Name: "monthlyFlatRate", Type: bigquery.FloatFieldType},
+	{Name: "isSoftCommitment", Type: bigquery.BooleanFieldType},
+	{Name: "vendorContract", Type: bigquery.StringFieldType},
+	{Name: "partnerMargin", Type: bigquery.FloatFieldType},
+	{Name: "plpsPercent", Type: bigquery.FloatFieldType},
+	{Name: "terminated", Type: bigquery.BooleanFieldType},
+	{Name: "insertTimestamp", Type: bigquery.TimestampFieldType},
+	{Name: "isAdvantage", Type: bigquery.BooleanFieldType},
+	{Name: "properties", Type: bigquery.RecordFieldType, Repeated: true, Schema: bigquery.Schema{
+		{Name: "key", Type: bigquery.StringFieldType},
+		{Name: "value", Type: bigquery.StringFieldType},
+	}},
+}

@@ -1,0 +1,17 @@
+{
+  "bruteforce": {
+    "bruteforcebilling-explorer202302": 3,
+    "bruteforcecmp-bruteforce202302": 4,
+    "bruteforcedoitintl-cmp-gcp-data202302": 5
+  },
+  "gigabright": {
+    "gigabrightcmp-aws-etl-dev202302": 6,
+    "gigabrightcmp-aws-etl-prod202302": 7,
+    "gigabrightme-doit-intl-com202302": 8
+  },
+  "turing": {
+    "turingcmp-flexsave202302": 9,
+    "turingdoitintl-cmp-flexsave-aws-dev202302": 10,
+    "turingdoitintl-cmp-flexsave-aws-prod202302": 11
+  }
+}

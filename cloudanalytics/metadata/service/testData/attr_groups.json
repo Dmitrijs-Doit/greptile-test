@@ -1,0 +1,370 @@
+[
+  {
+    "Collaborators": [
+      { "email": "yoni@doit.com", "role": "viewer" },
+      { "email": "yoni2@doit.com", "role": "owner" }
+    ],
+    "Public": "viewer",
+    "Customer": {
+      "Parent": {
+        "Parent": null,
+        "Path": "projects/doitintl-cmp-dev/databases/(default)/documents/customers",
+        "ID": "customers"
+      },
+      "Path": "projects/doitintl-cmp-dev/databases/(default)/documents/customers/ImoC9XkrutBysJvyqlBm",
+      "ID": "ImoC9XkrutBysJvyqlBm"
+    },
+    "Name": "All AWS, GCP",
+    "Organization": null,
+    "TimeCreated": "2023-02-07T08:11:50.611Z",
+    "TimeModified": "2023-02-07T08:11:50.611Z",
+    "Description": "all resources",
+    "Attributions": [
+      {
+        "Parent": {
+          "Parent": {
+            "Parent": {
+              "Parent": null,
+              "Path": "projects/doitintl-cmp-dev/databases/(default)/documents/dashboards",
+              "ID": "dashboards"
+            },
+            "Path": "projects/doitintl-cmp-dev/databases/(default)/documents/dashboards/google-cloud-reports",
+            "ID": "google-cloud-reports"
+          },
+          "Path": "projects/doitintl-cmp-dev/databases/(default)/documents/dashboards/google-cloud-reports/attributions",
+          "ID": "attributions"
+        },
+        "Path": "projects/doitintl-cmp-dev/databases/(default)/documents/dashboards/google-cloud-reports/attributions/PvqyGcdFcTHh7aLUdGdf",
+        "ID": "PvqyGcdFcTHh7aLUdGdf"
+      },
+      {
+        "Parent": {
+          "Parent": {
+            "Parent": {
+              "Parent": null,
+              "Path": "projects/doitintl-cmp-dev/databases/(default)/documents/dashboards",
+              "ID": "dashboards"
+            },
+            "Path": "projects/doitintl-cmp-dev/databases/(default)/documents/dashboards/google-cloud-reports",
+            "ID": "google-cloud-reports"
+          },
+          "Path": "projects/doitintl-cmp-dev/databases/(default)/documents/dashboards/google-cloud-reports/attributions",
+          "ID": "attributions"
+        },
+        "Path": "projects/doitintl-cmp-dev/databases/(default)/documents/dashboards/google-cloud-reports/attributions/7mJDP8HtXXlpFTb2pVz7",
+        "ID": "7mJDP8HtXXlpFTb2pVz7"
+      }
+    ],
+    "Type": "custom",
+    "ID": "ApLkTC7wffyvv7ZlcHHD"
+  },
+  {
+    "Collaborators": [{ "email": "avil@doit.com", "role": "owner" }],
+    "Public": "viewer",
+    "Customer": {
+      "Parent": {
+        "Parent": null,
+        "Path": "projects/doitintl-cmp-dev/databases/(default)/documents/customers",
+        "ID": "customers"
+      },
+      "Path": "projects/doitintl-cmp-dev/databases/(default)/documents/customers/ImoC9XkrutBysJvyqlBm",
+      "ID": "ImoC9XkrutBysJvyqlBm"
+    },
+    "Name": "chaim test attribution group",
+    "Organization": null,
+    "TimeCreated": "2023-02-08T18:33:29.486Z",
+    "TimeModified": "2023-02-08T18:33:29.486Z",
+    "Description": "",
+    "Attributions": [
+      {
+        "Parent": {
+          "Parent": {
+            "Parent": {
+              "Parent": null,
+              "Path": "projects/doitintl-cmp-dev/databases/(default)/documents/dashboards",
+              "ID": "dashboards"
+            },
+            "Path": "projects/doitintl-cmp-dev/databases/(default)/documents/dashboards/google-cloud-reports",
+            "ID": "google-cloud-reports"
+          },
+          "Path": "projects/doitintl-cmp-dev/databases/(default)/documents/dashboards/google-cloud-reports/attributions",
+          "ID": "attributions"
+        },
+        "Path": "projects/doitintl-cmp-dev/databases/(default)/documents/dashboards/google-cloud-reports/attributions/uiKfGc78lZgY8mJnIAfK",
+        "ID": "uiKfGc78lZgY8mJnIAfK"
+      },
+      {
+        "Parent": {
+          "Parent": {
+            "Parent": {
+              "Parent": null,
+              "Path": "projects/doitintl-cmp-dev/databases/(default)/documents/dashboards",
+              "ID": "dashboards"
+            },
+            "Path": "projects/doitintl-cmp-dev/databases/(default)/documents/dashboards/google-cloud-reports",
+            "ID": "google-cloud-reports"
+          },
+          "Path": "projects/doitintl-cmp-dev/databases/(default)/documents/dashboards/google-cloud-reports/attributions",
+          "ID": "attributions"
+        },
+        "Path": "projects/doitintl-cmp-dev/databases/(default)/documents/dashboards/google-cloud-reports/attributions/8InVN9V8uJHF7iqd7Z2Y",
+        "ID": "8InVN9V8uJHF7iqd7Z2Y"
+      },
+      {
+        "Parent": {
+          "Parent": {
+            "Parent": {
+              "Parent": null,
+              "Path": "projects/doitintl-cmp-dev/databases/(default)/documents/dashboards",
+              "ID": "dashboards"
+            },
+            "Path": "projects/doitintl-cmp-dev/databases/(default)/documents/dashboards/google-cloud-reports",
+            "ID": "google-cloud-reports"
+          },
+          "Path": "projects/doitintl-cmp-dev/databases/(default)/documents/dashboards/google-cloud-reports/attributions",
+          "ID": "attributions"
+        },
+        "Path": "projects/doitintl-cmp-dev/databases/(default)/documents/dashboards/google-cloud-reports/attributions/YTyiPPSwWSV9OybA3XRI",
+        "ID": "YTyiPPSwWSV9OybA3XRI"
+      }
+    ],
+    "Type": "custom",
+    "ID": "JLFWpZ6FmH8010kkSDrg"
+  },
+  {
+    "Collaborators": [{ "email": "yoni@doit.com", "role": "owner" }],
+    "Public": "viewer",
+    "Customer": {
+      "Parent": {
+        "Parent": null,
+        "Path": "projects/doitintl-cmp-dev/databases/(default)/documents/customers",
+        "ID": "customers"
+      },
+      "Path": "projects/doitintl-cmp-dev/databases/(default)/documents/customers/ImoC9XkrutBysJvyqlBm",
+      "ID": "ImoC9XkrutBysJvyqlBm"
+    },
+    "Name": "added 2",
+    "Organization": null,
+    "TimeCreated": "2023-02-07T08:17:28.028Z",
+    "TimeModified": "2023-02-07T08:17:28.028Z",
+    "Description": "all resources",
+    "Attributions": [
+      {
+        "Parent": {
+          "Parent": {
+            "Parent": {
+              "Parent": null,
+              "Path": "projects/doitintl-cmp-dev/databases/(default)/documents/dashboards",
+              "ID": "dashboards"
+            },
+            "Path": "projects/doitintl-cmp-dev/databases/(default)/documents/dashboards/google-cloud-reports",
+            "ID": "google-cloud-reports"
+          },
+          "Path": "projects/doitintl-cmp-dev/databases/(default)/documents/dashboards/google-cloud-reports/attributions",
+          "ID": "attributions"
+        },
+        "Path": "projects/doitintl-cmp-dev/databases/(default)/documents/dashboards/google-cloud-reports/attributions/PvqyGcdFcTHh7aLUdGdf",
+        "ID": "PvqyGcdFcTHh7aLUdGdf"
+      },
+      {
+        "Parent": {
+          "Parent": {
+            "Parent": {
+              "Parent": null,
+              "Path": "projects/doitintl-cmp-dev/databases/(default)/documents/dashboards",
+              "ID": "dashboards"
+            },
+            "Path": "projects/doitintl-cmp-dev/databases/(default)/documents/dashboards/google-cloud-reports",
+            "ID": "google-cloud-reports"
+          },
+          "Path": "projects/doitintl-cmp-dev/databases/(default)/documents/dashboards/google-cloud-reports/attributions",
+          "ID": "attributions"
+        },
+        "Path": "projects/doitintl-cmp-dev/databases/(default)/documents/dashboards/google-cloud-reports/attributions/7mJDP8HtXXlpFTb2pVz7",
+        "ID": "7mJDP8HtXXlpFTb2pVz7"
+      },
+      {
+        "Parent": {
+          "Parent": {
+            "Parent": {
+              "Parent": null,
+              "Path": "projects/doitintl-cmp-dev/databases/(default)/documents/dashboards",
+              "ID": "dashboards"
+            },
+            "Path": "projects/doitintl-cmp-dev/databases/(default)/documents/dashboards/google-cloud-reports",
+            "ID": "google-cloud-reports"
+          },
+          "Path": "projects/doitintl-cmp-dev/databases/(default)/documents/dashboards/google-cloud-reports/attributions",
+          "ID": "attributions"
+        },
+        "Path": "projects/doitintl-cmp-dev/databases/(default)/documents/dashboards/google-cloud-reports/attributions/HPBFfmPKMYFiLz55fkhI",
+        "ID": "HPBFfmPKMYFiLz55fkhI"
+      },
+      {
+        "Parent": {
+          "Parent": {
+            "Parent": {
+              "Parent": null,
+              "Path": "projects/doitintl-cmp-dev/databases/(default)/documents/dashboards",
+              "ID": "dashboards"
+            },
+            "Path": "projects/doitintl-cmp-dev/databases/(default)/documents/dashboards/google-cloud-reports",
+            "ID": "google-cloud-reports"
+          },
+          "Path": "projects/doitintl-cmp-dev/databases/(default)/documents/dashboards/google-cloud-reports/attributions",
+          "ID": "attributions"
+        },
+        "Path": "projects/doitintl-cmp-dev/databases/(default)/documents/dashboards/google-cloud-reports/attributions/D7r4znsTj2UC95zGnunW",
+        "ID": "D7r4znsTj2UC95zGnunW"
+      }
+    ],
+    "Type": "custom",
+    "ID": "NRTEJY1rxgUw8LpHDAOn"
+  },
+  {
+    "Collaborators": [{ "email": "yoni@doit.com", "role": "owner" }],
+    "Public": "viewer",
+    "Customer": {
+      "Parent": {
+        "Parent": null,
+        "Path": "projects/doitintl-cmp-dev/databases/(default)/documents/customers",
+        "ID": "customers"
+      },
+      "Path": "projects/doitintl-cmp-dev/databases/(default)/documents/customers/ImoC9XkrutBysJvyqlBm",
+      "ID": "ImoC9XkrutBysJvyqlBm"
+    },
+    "Name": "aaaaa",
+    "Organization": null,
+    "TimeCreated": "2023-02-07T08:17:50.244Z",
+    "TimeModified": "2023-02-07T08:17:50.244Z",
+    "Description": "all resources",
+    "Attributions": [
+      {
+        "Parent": {
+          "Parent": {
+            "Parent": {
+              "Parent": null,
+              "Path": "projects/doitintl-cmp-dev/databases/(default)/documents/dashboards",
+              "ID": "dashboards"
+            },
+            "Path": "projects/doitintl-cmp-dev/databases/(default)/documents/dashboards/google-cloud-reports",
+            "ID": "google-cloud-reports"
+          },
+          "Path": "projects/doitintl-cmp-dev/databases/(default)/documents/dashboards/google-cloud-reports/attributions",
+          "ID": "attributions"
+        },
+        "Path": "projects/doitintl-cmp-dev/databases/(default)/documents/dashboards/google-cloud-reports/attributions/7mJDP8HtXXlpFTb2pVz7",
+        "ID": "7mJDP8HtXXlpFTb2pVz7"
+      },
+      {
+        "Parent": {
+          "Parent": {
+            "Parent": {
+              "Parent": null,
+              "Path": "projects/doitintl-cmp-dev/databases/(default)/documents/dashboards",
+              "ID": "dashboards"
+            },
+            "Path": "projects/doitintl-cmp-dev/databases/(default)/documents/dashboards/google-cloud-reports",
+            "ID": "google-cloud-reports"
+          },
+          "Path": "projects/doitintl-cmp-dev/databases/(default)/documents/dashboards/google-cloud-reports/attributions",
+          "ID": "attributions"
+        },
+        "Path": "projects/doitintl-cmp-dev/databases/(default)/documents/dashboards/google-cloud-reports/attributions/0hclBAPbOUNSi6IIVGLW",
+        "ID": "0hclBAPbOUNSi6IIVGLW"
+      },
+      {
+        "Parent": {
+          "Parent": {
+            "Parent": {
+              "Parent": null,
+              "Path": "projects/doitintl-cmp-dev/databases/(default)/documents/dashboards",
+              "ID": "dashboards"
+            },
+            "Path": "projects/doitintl-cmp-dev/databases/(default)/documents/dashboards/google-cloud-reports",
+            "ID": "google-cloud-reports"
+          },
+          "Path": "projects/doitintl-cmp-dev/databases/(default)/documents/dashboards/google-cloud-reports/attributions",
+          "ID": "attributions"
+        },
+        "Path": "projects/doitintl-cmp-dev/databases/(default)/documents/dashboards/google-cloud-reports/attributions/uiKfGc78lZgY8mJnIAfK",
+        "ID": "uiKfGc78lZgY8mJnIAfK"
+      },
+      {
+        "Parent": {
+          "Parent": {
+            "Parent": {
+              "Parent": null,
+              "Path": "projects/doitintl-cmp-dev/databases/(default)/documents/dashboards",
+              "ID": "dashboards"
+            },
+            "Path": "projects/doitintl-cmp-dev/databases/(default)/documents/dashboards/google-cloud-reports",
+            "ID": "google-cloud-reports"
+          },
+          "Path": "projects/doitintl-cmp-dev/databases/(default)/documents/dashboards/google-cloud-reports/attributions",
+          "ID": "attributions"
+        },
+        "Path": "projects/doitintl-cmp-dev/databases/(default)/documents/dashboards/google-cloud-reports/attributions/PvqyGcdFcTHh7aLUdGdf",
+        "ID": "PvqyGcdFcTHh7aLUdGdf"
+      }
+    ],
+    "Type": "custom",
+    "ID": "fi0H0bNylLxIqlTZjptD"
+  },
+  {
+    "Collaborators": [{ "email": "yoni@doit.com", "role": "owner" }],
+    "Public": "viewer",
+    "Customer": {
+      "Parent": {
+        "Parent": null,
+        "Path": "projects/doitintl-cmp-dev/databases/(default)/documents/customers",
+        "ID": "customers"
+      },
+      "Path": "projects/doitintl-cmp-dev/databases/(default)/documents/customers/ImoC9XkrutBysJvyqlBm",
+      "ID": "ImoC9XkrutBysJvyqlBm"
+    },
+    "Name": "123",
+    "Organization": null,
+    "TimeCreated": "2023-02-07T08:15:49.147Z",
+    "TimeModified": "2023-02-07T08:15:49.147Z",
+    "Description": "all resources",
+    "Attributions": [
+      {
+        "Parent": {
+          "Parent": {
+            "Parent": {
+              "Parent": null,
+              "Path": "projects/doitintl-cmp-dev/databases/(default)/documents/dashboards",
+              "ID": "dashboards"
+            },
+            "Path": "projects/doitintl-cmp-dev/databases/(default)/documents/dashboards/google-cloud-reports",
+            "ID": "google-cloud-reports"
+          },
+          "Path": "projects/doitintl-cmp-dev/databases/(default)/documents/dashboards/google-cloud-reports/attributions",
+          "ID": "attributions"
+        },
+        "Path": "projects/doitintl-cmp-dev/databases/(default)/documents/dashboards/google-cloud-reports/attributions/PvqyGcdFcTHh7aLUdGdf",
+        "ID": "PvqyGcdFcTHh7aLUdGdf"
+      },
+      {
+        "Parent": {
+          "Parent": {
+            "Parent": {
+              "Parent": null,
+              "Path": "projects/doitintl-cmp-dev/databases/(default)/documents/dashboards",
+              "ID": "dashboards"
+            },
+            "Path": "projects/doitintl-cmp-dev/databases/(default)/documents/dashboards/google-cloud-reports",
+            "ID": "google-cloud-reports"
+          },
+          "Path": "projects/doitintl-cmp-dev/databases/(default)/documents/dashboards/google-cloud-reports/attributions",
+          "ID": "attributions"
+        },
+        "Path": "projects/doitintl-cmp-dev/databases/(default)/documents/dashboards/google-cloud-reports/attributions/7mJDP8HtXXlpFTb2pVz7",
+        "ID": "7mJDP8HtXXlpFTb2pVz7"
+      }
+    ],
+    "Type": "custom",
+    "ID": "uutASifUzwbTnCc6Yjps"
+  }
+]

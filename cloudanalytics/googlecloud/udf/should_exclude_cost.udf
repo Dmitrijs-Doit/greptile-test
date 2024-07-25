@@ -1,0 +1,21 @@
+CREATE OR REPLACE FUNCTION `doitintl-cmp-gcp-data.gcp_billing.UDF_SHOULD_EXCLUDE_COST_V1BETA`(service STRUCT<id STRING, description STRING>, sku STRUCT<id STRING, description STRING>) RETURNS BOOL AS (
+CASE
+  -- Looker service
+  WHEN 
+    sku.id IN ("7CE2-9C5D-E9F4", "25F9-B190-39DB", "DB8F-28B5-83A0")
+  THEN
+    TRUE
+  WHEN
+    service.id = "C71C-0952-AAC7"
+  THEN
+    NOT REGEXP_CONTAINS(sku.description, r"(?i)google cloud core")
+
+  -- Flexsave Marketplace services
+  WHEN
+    service.id = "791D-80C1-56EE" OR service.id = "C22F-6D0A-F411"
+  THEN
+    TRUE
+  ELSE
+    FALSE
+END
+);

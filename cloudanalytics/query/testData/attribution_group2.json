@@ -1,0 +1,46 @@
+{
+  "id": "attribution_group:c5Cj64zQJMFpuZnWnkO3",
+  "type": "attribution_group",
+  "key": "c5Cj64zQJMFpuZnWnkO3",
+  "includeInFilter": true,
+  "attributions": [
+    {
+      "id": "attribution:LxcpG0t5ePkbZgQSP4ko",
+      "type": "attribution",
+      "key": "dev",
+      "includeInFilter": true,
+      "composite": [
+        {
+          "regexp": null,
+          "inverse": false,
+          "key": "project_name",
+          "id": "fixed:project_name",
+          "values": ["Taboola Row Data BI", "Taboola Web Sites"],
+          "type": "fixed",
+          "field": "T.project_name",
+          "allowNull": false
+        }
+      ],
+      "formula": "A AND B"
+    },
+    {
+      "id": "attribution:9oFqu1VSNPDy1thuKl5w",
+      "type": "attribution",
+      "key": "prod",
+      "includeInFilter": true,
+      "composite": [
+        {
+          "allowNull": false,
+          "regexp": null,
+          "type": "fixed",
+          "values": ["Taboola Reader App Prod"],
+          "id": "fixed:project_name",
+          "key": "project_name",
+          "inverse": false,
+          "field": "T.project_name"
+        }
+      ],
+      "formula": "A"
+    }
+  ]
+}

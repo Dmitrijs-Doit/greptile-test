@@ -1,0 +1,12 @@
+{
+  "id": "attribution_group:bvrITqonnEQKhoKRweVB",
+  "key": "bvrITqonnEQKhoKRweVB",
+  "type": "attribution_group",
+  "origin": "bruteforce",
+  "mode": "",
+  "targets": [
+    { "id": "gigabright", "value": 0.5 },
+    { "id": "turing", "value": 0.5 }
+  ],
+  "includeOrigin": true
+}

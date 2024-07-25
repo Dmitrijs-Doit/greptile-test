@@ -1,0 +1,84 @@
+CREATE OR REPLACE FUNCTION `doitintl-cmp-gcp-data.gcp_billing.UDF_REPORT_DATA_V1BETA`(is_marketplace BOOL, is_preemptible BOOL, is_premium_image BOOL, exclude_discount BOOL, cost FLOAT64, amount_in_pricing_units FLOAT64, credits ARRAY<STRUCT<name STRING, amount FLOAT64, full_name STRING, id STRING, type STRING>>, price_book STRUCT<discount FLOAT64, unit_price FLOAT64>, discount STRUCT<value FLOAT64, rebase_modifier FLOAT64, allow_preemptible BOOL, is_commitment STRING>, ext_metric ARRAY<STRUCT<key STRING, value FLOAT64, type STRING>>, plps_doit_percent FLOAT64, plps_google_percent FLOAT64)
+RETURNS ARRAY<STRUCT<cost FLOAT64, usage FLOAT64, savings FLOAT64, credit STRING, ext_metric STRUCT<key STRING, value FLOAT64, type STRING>>>
+LANGUAGE js AS R"""
+  let rebase_modifier = 1;
+  let discount_value = 1;
+  if (discount !== null && !exclude_discount && !is_marketplace && !is_premium_image) {
+    if (discount.rebase_modifier !== null) {
+      rebase_modifier = discount.rebase_modifier;
+    }
+    if (discount.value !== null) {
+      if (!is_preemptible || discount.allow_preemptible) {
+        discount_value = discount.value;
+      }
+    }
+  }
+
+  const result = [null, ...credits].map((credit) => {
+    const v = {
+      cost: null,
+      usage: null,
+      credit: null,
+      savings: null,
+      ext_metric: null,
+    };
+
+    if (credit !== null) {
+      v.credit = credit.name;
+      v.cost = credit.amount;
+      if (price_book !== null) {
+        if (price_book.discount !== null) {
+          v.cost *= price_book.discount;
+        }
+      }
+    } else {
+      v.cost = cost;
+      v.cost *= rebase_modifier;
+      v.usage = amount_in_pricing_units;
+      if (v.usage !== null) {
+        v.usage *= rebase_modifier;
+      }
+      if (price_book !== null) {
+        if (price_book.discount !== null) {
+          v.cost *= price_book.discount;
+        } else if (amount_in_pricing_units !== null && price_book.unit_price !== null) {
+          v.cost = amount_in_pricing_units * price_book.unit_price;
+        }
+      }
+      if (plps_doit_percent !== null) {
+          let one_percent_cost = cost / plps_google_percent;
+          let doit_cost = one_percent_cost * plps_doit_percent;
+          v.cost = doit_cost - cost;
+      }
+    }
+    v.savings = v.cost * (1 - discount_value);
+    v.cost *= discount_value;
+    return v;
+  });
+
+  // extended metrics that should be excluded from customer tables
+  const excluded_ext_metrics = [
+    "flexsave_waste_cost",
+  ];
+
+  for (const m of ext_metric) {
+    if (excluded_ext_metrics.includes(m.key)) {
+      continue
+    }
+
+    // Apply doit's discount for extended metrics of type "cost"
+    if (m.type === "cost") {
+      m.value *= discount_value;
+    }
+
+    result.push({
+      cost: null,
+      usage: null,
+      saving: null,
+      credit: null,
+      ext_metric: m
+    });
+  }
+
+  return result;
+""";

@@ -1,0 +1,51 @@
+service: scheduled-tasks
+runtime: go121
+main: ./cmd
+
+instance_class: B4_1G
+basic_scaling:
+  max_instances: 20
+
+handlers:
+  - url: /anomalies/v1/.*
+    secure: always
+    redirect_http_response_code: 301
+    script: auto
+
+  - url: /core/v1/.*
+    secure: always
+    redirect_http_response_code: 301
+    script: auto
+
+  - url: /billing/v1/.*
+    secure: always
+    redirect_http_response_code: 301
+    script: auto
+
+  - url: /analytics/v1/.*
+    secure: always
+    redirect_http_response_code: 301
+    script: auto
+
+  - url: /api/v1/.*
+    secure: always
+    redirect_http_response_code: 301
+    script: auto
+
+  - url: /v1/.*
+    secure: always
+    redirect_http_response_code: 301
+    script: auto
+
+  - url: /webhooks/v1/.*
+    secure: always
+    redirect_http_response_code: 301
+    script: auto
+
+  - url: /.*
+    secure: always
+    redirect_http_response_code: 301
+    script: auto
+
+env_variables:
+  GIN_MODE: "release"

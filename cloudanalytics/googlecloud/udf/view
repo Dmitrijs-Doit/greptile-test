@@ -1,0 +1,94 @@
+WITH
+discounts AS (
+  SELECT 
+    billing_account_id, 
+    start_date, 
+    end_date, 
+    discount, 
+    rebase_modifier, 
+    discount_preemptible 
+  FROM `doitintl-cmp-dev.google_cloud_billing.discounts` LEFT JOIN UNNEST(billing_accounts) AS billing_account_id WHERE billing_account_id = "01D363-F1BCDC-C8A9A9"
+  ORDER BY end_date DESC
+),
+account_data AS (
+  SELECT * FROM `doitintl-cmp-dev.google_cloud_billing.gcp_billing_export_v1_0033B9_BB2726_9A3CB4` WHERE billing_account_id = "01D363-F1BCDC-C8A9A9"
+),
+account_data_enh AS (
+  SELECT 
+    T.*,
+  	IFNULL(S.properties.isMarketplace, FALSE) AS is_marketplace,
+  	IFNULL(S.properties.isPreemptible, FALSE) AS is_preemptible,
+  FROM account_data AS T LEFT JOIN `doitintl-cmp-dev.analytics.googleCloudBillingSkus` AS S ON T.service.id = S.service.id AND T.sku.id = S.sku.id
+)
+
+SELECT
+  T.*,
+  S.* EXCEPT(billing_account_id)
+FROM
+  account_data_enh AS T
+LEFT JOIN
+  discounts AS S
+ON
+  T.billing_account_id = S.billing_account_id
+  AND DATE(T.usage_start_time, "America/Los_Angeles") >= DATE(S.start_date) 
+  AND DATE(T.usage_start_time, "America/Los_Angeles") < DATE(S.end_date)
+  AND NOT T.is_marketplace
+  AND (S.discount_preemptible OR NOT T.is_preemptible)
+ 
+
+
+==============================================================================================
+
+discounts view:
+
+WITH
+  customer_billing_accounts AS (
+  SELECT
+    customer.name AS customer_id,
+    entity.name AS entity_id,
+    ARRAY_AGG(properties.billingAccountId) AS billing_accounts,
+  FROM
+    `me-doit-intl-com.analytics.assets`
+  WHERE
+    _PARTITIONTIME = TIMESTAMP(CURRENT_DATE())
+    AND type = 'google-cloud'
+  GROUP BY
+    customer_id,
+    entity_id ),
+  contracts AS (
+  SELECT
+    customer.name AS customer_id,
+    entity.name AS entity_id,
+    active AS is_active,
+    isCommitment AS is_commitment,
+    startDate AS start_date,
+    endDate AS end_date,
+    SAFE_CAST(COALESCE(discount.float,
+        discount.integer,
+        0) AS FLOAT64) AS discount,
+    SAFE_CAST(COALESCE(properties.rebaseModifier,
+        0) AS FLOAT64) AS rebase_modifier,
+    COALESCE(properties.discountPreemptible,
+      FALSE) AS discount_preemptible,
+    (
+    SELECT
+      ARRAY_AGG( REGEXP_EXTRACT(asset.name, r"^google-cloud-(.+)$"))
+    FROM
+      UNNEST(assets) AS asset) AS billing_accounts,
+  FROM
+    `me-doit-intl-com.analytics.contracts`
+  WHERE
+    _PARTITIONTIME = TIMESTAMP(CURRENT_DATE())
+    AND type = 'google-cloud' )
+  
+SELECT
+  T1.* 
+  EXCEPT (customer_id, entity_id)
+  REPLACE (IF(ARRAY_LENGTH(T1.billing_accounts) > 0, T1.billing_accounts, T2.billing_accounts) AS billing_accounts) 
+FROM
+  contracts AS T1
+LEFT JOIN
+  customer_billing_accounts AS T2
+ON
+  T1.customer_id = T2.customer_id
+  AND T1.entity_id = T2.entity_id

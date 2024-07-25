@@ -1,0 +1,38 @@
+{
+  "id": "attributionGroup:10pEZalkOeXgjQp92tHI",
+  "type": "attribution_group",
+  "key": "10pEZalkOeXgjQp92tHI",
+  "includeInFilter": true,
+  "attributions": [
+    {
+      "id": "attribution:uiKfGc78lZgY8mJnIAfK",
+      "type": "attribution",
+      "key": "Bruteforce",
+      "includeInFilter": true,
+      "absoluteKey": "cost",
+      "composite": [
+        {
+          "regexp": null,
+          "field": "T.project.ancestry_names",
+          "id": "fixed:project_ancestry_names",
+          "allowNull": false,
+          "inverse": false,
+          "key": "project_ancestry_names",
+          "values": ["/taboola.com/Data Engineering/", "/taboola.com/IT Systems/", "/252201914815/457639101977/"],
+          "type": "fixed"
+        },
+        {
+          "allowNull": false,
+          "id": "fixed:cloud_provider",
+          "regexp": null,
+          "field": "T.cloud_provider",
+          "values": ["google-cloud"],
+          "type": "fixed",
+          "inverse": false,
+          "key": "cloud_provider"
+        }
+      ],
+      "formula": "A AND B"
+    }
+  ]
+}

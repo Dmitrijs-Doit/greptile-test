@@ -1,0 +1,75 @@
+{
+  "Statement": [
+    {
+      "Sid": "OrganizationAccountAccessRole",
+      "Effect": "Allow",
+      "Action": ["sts:AssumeRole"],
+      "Resource": "arn:aws:iam::*:role/OrganizationAccountAccessRole"
+    },
+    {
+      "Sid": "Organizations",
+      "Effect": "Allow",
+      "Action": [
+        "organizations:CreateAccount",
+        "organizations:DescribeAccount",
+        "organizations:DescribeCreateAccountStatus",
+        "organizations:DescribeHandshake",
+        "organizations:DescribeOrganization",
+        "organizations:InviteAccountToOrganization",
+        "organizations:ListAccounts*",
+        "organizations:ListHandshakes*",
+        "organizations:ListParents",
+        "organizations:ListTagsForResource"
+      ],
+      "Resource": "*"
+    },
+    {
+      "Effect": "Allow",
+      "Sid": "HealthKnownIssues",
+      "Action": [
+        "health:EnableHealthServiceAccessForOrganization",
+        "health:DescribeEventsForOrganization",
+        "health:DescribeEvents"
+      ],
+      "Resource": "*"
+    },
+    {
+      "Sid": "BillingPipeline",
+      "Effect": "Allow",
+      "Action": [
+        "iam:GetRole",
+        "ec2:DescribeReservedInstances",
+        "savingsplans:Describe*",
+        "ce:List*",
+        "ce:Describe*",
+        "ce:Get*"
+      ],
+      "Resource": "*"
+    },
+    {
+      "Sid": "S3Bucket",
+      "Effect": "Allow",
+      "Action": ["s3:ListBucket"],
+      "Resource": "arn:aws:s3:::MPA_S3_CUR_BUCKET"
+    },
+    {
+      "Sid": "S3Object",
+      "Effect": "Allow",
+      "Action": ["s3:GetObject"],
+      "Resource": "arn:aws:s3:::MPA_S3_CUR_BUCKET/*"
+    },
+    {
+      "Action": ["iam:GetRole", "iam:GetPolicy*"],
+      "Resource": ["arn:aws:iam::MPA_ACCOUNT_ID:role/doitintl_cmp", "arn:aws:iam::MPA_ACCOUNT_ID:policy/doitintl_cmp"],
+      "Effect": "Allow",
+      "Sid": "Onboarding"
+    },
+    {
+      "Sid": "BillingCMP",
+      "Effect": "Allow",
+      "Action": ["ce:UpdateCostAllocationTagsStatus", "cur:DescribeReportDefinitions"],
+      "Resource": "*"
+    }
+  ],
+  "Version": "2012-10-17"
+}

@@ -1,0 +1,20 @@
+{
+  "name": "@doitintl/scheduled-tasks",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "ci": "GOOGLE_CLOUD_PROJECT=doitintl-cmp-dev yarn test:exec 'gotestsum --junitfile junit.xml -- -coverprofile cover.out ./...'",
+    "go:outdated": "go list -u -m -f '{{.}}{{if not .Indirect}} IAMDIRECT{{end}}' all | grep IAMDIRECT| grep '\\[.*\\]'",
+    "start:emulator": "firebase emulators:start --config ../../../firebase/firebase-emulator.json --only firestore --project dev",
+    "test": "yarn test:exec \"yarn test:noemulator\"",
+    "test:exec": "firebase emulators:exec --config ../../../firebase/firebase.json --only firestore --project dev",
+    "test:noemulator": "GOOGLE_CLOUD_PROJECT=doitintl-cmp-dev go test -count=1  ./..."
+  },
+  "devDependencies": {
+    "@doitintl/import-export-firestore": "*",
+    "firebase-tools": "13.13.3"
+  },
+  "engines": {
+    "node": ">=16 <=18"
+  }
+}

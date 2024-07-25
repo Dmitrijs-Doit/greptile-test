@@ -1,0 +1,94 @@
+{
+  "Name": "DoiT International",
+  "LowerName": "doit international",
+  "PrimaryDomain": "doit-intl.com",
+  "Domains": ["doit-intl.com"],
+  "Assets": ["amazon-web-services"],
+  "AccountManager": null,
+  "AccountManagers": {
+    "amazon_web_services": {},
+    "doit": {
+      "AccountManager1": {
+        "Ref": {
+          "Parent": {
+            "Parent": null,
+            "Path": "projects/doitintl-cmp-spot0-dev/databases/(default)/documents/accountManagers",
+            "ID": "accountManagers"
+          },
+          "Path": "projects/doitintl-cmp-spot0-dev/databases/(default)/documents/accountManagers/gtBfNK7xZ3MNuMRFuxA8",
+          "ID": "gtBfNK7xZ3MNuMRFuxA8"
+        },
+        "Notification": 2
+      },
+      "AccountManager2": null,
+      "AccountManager3": null
+    },
+    "google_cloud_platform": {},
+    "microsoft_azure": {}
+  },
+  "AccountTeam": [
+    {
+      "Ref": {
+        "Parent": {
+          "Parent": null,
+          "Path": "projects/doitintl-cmp-spot0-dev/databases/(default)/documents/accountManagers",
+          "ID": "accountManagers"
+        },
+        "Path": "projects/doitintl-cmp-spot0-dev/databases/(default)/documents/accountManagers/gtBfNK7xZ3MNuMRFuxA8",
+        "ID": "gtBfNK7xZ3MNuMRFuxA8"
+      },
+      "Company": "doit",
+      "SupportNotificationLevel": 2
+    }
+  ],
+  "Entities": [
+    {
+      "Parent": {
+        "Parent": null,
+        "Path": "projects/doitintl-cmp-spot0-dev/databases/(default)/documents/entities",
+        "ID": "entities"
+      },
+      "Path": "projects/doitintl-cmp-spot0-dev/databases/(default)/documents/entities/mxOYdZhmZ8fy7WxoN0a9",
+      "ID": "mxOYdZhmZ8fy7WxoN0a9"
+    }
+  ],
+  "SharedDriveFolderID": "1FjOS0M-1XbsMyMJv7bVyRYOnutG5Z5Gl",
+  "Classification": "business",
+  "SecurityMode": null,
+  "TimeCreated": "0001-01-01T00:00:00Z",
+  "Enrichment": {
+    "Logo": "https://logo.clearbit.com/doit-intl.com",
+    "HubspotID": "3322625280",
+    "Geo": {
+      "CountryCode": "US",
+      "PostalCode": "95054",
+      "StreetName": "Augustine Drive",
+      "City": "Santa Clara",
+      "Country": "United States"
+    }
+  },
+  "TrialEndDate": null,
+  "Settings": {
+    "Currency": "USD",
+    "Timezone": "America/New_York"
+  },
+  "Auth": {
+    "Sso": null
+  },
+  "Type": null,
+  "EnabledFlexsave": null,
+  "Snapshot": {
+    "Ref": {
+      "Parent": {
+        "Parent": null,
+        "Path": "projects/doitintl-cmp-spot0-dev/databases/(default)/documents/customers",
+        "ID": "customers"
+      },
+      "Path": "projects/doitintl-cmp-spot0-dev/databases/(default)/documents/customers/EE8CtpzYiKp0dVAESVrB",
+      "ID": "EE8CtpzYiKp0dVAESVrB"
+    },
+    "CreateTime": "2022-06-19T19:03:20.363492Z",
+    "UpdateTime": "2022-08-10T11:21:58.363011Z",
+    "ReadTime": "2022-08-28T18:36:35.02084Z"
+  }
+}

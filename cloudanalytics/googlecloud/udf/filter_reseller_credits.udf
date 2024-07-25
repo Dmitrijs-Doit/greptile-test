@@ -1,0 +1,10 @@
+CREATE OR REPLACE FUNCTION `doitintl-cmp-gcp-data.gcp_billing.UDF_FILTER_CREDITS_RESELLER_V1BETA`(credits ARRAY<STRUCT<name STRING, amount FLOAT64, full_name STRING, id STRING, type STRING>>) RETURNS ARRAY<STRUCT<name STRING, amount FLOAT64, full_name STRING, id STRING, type STRING>> AS (
+ARRAY(
+    SELECT
+      credit
+    FROM
+      UNNEST(credits) AS credit
+    WHERE
+      credit.type = "RESELLER_MARGIN"
+  )
+);

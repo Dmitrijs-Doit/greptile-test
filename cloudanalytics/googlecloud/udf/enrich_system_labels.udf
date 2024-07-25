@@ -1,0 +1,251 @@
+CREATE OR REPLACE FUNCTION `doitintl-cmp-gcp-data.gcp_billing.UDF_ENRICH_SYSTEM_LABELS_V1BETA`(system_labels ARRAY<STRUCT<key STRING, value STRING>>, project_id STRING, service_id STRING, sku_description STRING, cost_type STRING, is_preemptible BOOL, is_csp BOOL) RETURNS ARRAY<STRUCT<key STRING, value STRING>> LANGUAGE js AS R"""
+const flexsave_regexp = new RegExp(/^doitintl-fs-[0-9a-z]{6,}$/);
+
+if (flexsave_regexp.test(project_id)) {
+  system_labels.push({
+    key: "cmp/flexsave_project",
+    value: project_id,
+  });
+}
+
+const compute_service_id = "6F81-5844-456A";
+// Currently handle only Compute Engine service system labels
+if (service_id !== compute_service_id) {
+  return system_labels;
+}
+
+const compute_sl_prefix = "compute.googleapis.com";
+const commitment_regexp = new RegExp(/^commitment|^flexsave commitment/, "i");
+const is_commitment = commitment_regexp.test(sku_description);
+
+// Handle only row with the correct amount of system labels
+// or rows for un-utilizied commitments
+if (system_labels === null || system_labels.length < 3) {
+  if (!is_commitment) {
+    return system_labels;
+  }
+}
+
+// Determine the machine spec prefix ("machine type") from a commitment SKU
+const machine_spec_prefix_from_commitment_sku = (sku_description) => {
+  // skip "commitment v1: " or "commitment: " or "flexsave commitment v1: " or "flexsave commitment: "
+  const i = sku_description.indexOf(":") + 2;
+  const v = sku_description.slice(i).toLowerCase();
+  const m = v.match(/(amd cpu|cpu|core|amd ram|ram|gpu|local ssd)/);
+
+  // unsupported cloud analytics commitment resources types
+  if (["local ssd", "gpu"].includes(m[1])) {
+    return null;
+  }
+
+  const commitment_type = v.slice(0, Math.max(0, m.index - 1));
+  switch (commitment_type) {
+    case "memory-optimized":
+    case "memory optimized":
+      return "m1";
+    case "compute-optimized":
+    case "compute optimized":
+      return "c2";
+    default:
+      return commitment_type || "n1";
+  }
+};
+
+// https://cloud.google.com/compute/docs/memory-optimized-machines
+// should be one of "ultramem", "hypermem", "megamem"
+const machine_spec_memory_suffix = (machine_spec) => machine_spec.split("-")[1];
+
+try {
+  const utilized_commitment = "utilized commitment";
+  const unutilized_commitment = "unutilized commitment";
+  const spend_based_commitment = "spend-based commitment";
+
+  // Filter out FSGCP labels that should not be available in customer reports
+  const filter_labels = ["doitintl-cud-project"];
+  if (!is_csp) {
+    filter_labels.push("doitintl-cud-status");
+  }
+  system_labels = system_labels.filter((sl) => !filter_labels.includes(sl.key));
+
+  const values = system_labels.reduce((memo, label) => {
+    memo[label.key] = label.value;
+    return memo;
+  }, {});
+
+  const machine_spec = values[compute_sl_prefix + "/machine_spec"] || "";
+
+  const spend_based_regexp = new RegExp(/dollar based/, "i");
+  const core_regexp = new RegExp(/core|cpu/, "i");
+  const ram_regexp = new RegExp(/ram|memory/, "i");
+  const extended_regexp = new RegExp(/extended/, "i");
+  const sku_regexp = new RegExp(/licensing fee|free tier/, "i");
+  let machine_type = null;
+  let commitment_type = null;
+  let resource_name = null;
+
+  // filter out ineligible skus for commitments
+  const ineligible_sku = sku_regexp.test(sku_description);
+  let commit_eligible = !is_preemptible && !ineligible_sku;
+  const shared_core = [
+    "f1-micro",
+    "g1-small",
+    "e2-micro",
+    "e2-small",
+    "e2-medium",
+  ].includes(machine_spec);
+
+  if (core_regexp.test(sku_description)) {
+    resource_name = "cpu";
+  } else if (ram_regexp.test(sku_description)) {
+    // Extended memory are not eligible for commitments
+    if (machine_spec.endsWith("-ext") && extended_regexp.test(sku_description)) {
+      resource_name = "extended memory";
+      commit_eligible = false;
+    } else {
+      resource_name = "memory";
+    }
+  }
+
+  let machine_spec_prefix;
+  if (machine_spec) {
+    const machine_spec_match = machine_spec.match(/([a-z0-9]+)-.*/);
+    machine_spec_prefix = machine_spec_match[1];
+    if (is_commitment) {
+      commit_eligible = utilized_commitment;
+    }
+  } else {
+    // Unutilized commitments are not attributed to a machine type
+    // need to parse the SKU description to get the commitment type
+    commit_eligible = unutilized_commitment;
+    machine_spec_prefix = machine_spec_prefix_from_commitment_sku(sku_description);
+  }
+
+  switch (machine_spec_prefix) {
+    case "f1":
+    case "g1":
+      machine_type = "N1 shared-core";
+      commit_eligible = false;
+      break;
+    case "custom": // custom is N1 machines
+    case "n1":
+      machine_type = "N1 General-purpose";
+      commitment_type = "General purpose N1 commitments";
+      break;
+    case "n2":
+      machine_type = "N2 General-purpose";
+      commitment_type = "General purpose N2 commitments";
+      break;
+    case "n2d":
+      machine_type = "N2D General-purpose";
+      commitment_type = "General purpose N2D commitments";
+      break;
+    case "t2a":
+      machine_type = "T2A General-purpose";
+      commit_eligible = false; // No info about commitment eligibility in docs
+      break;
+    case "t2d":
+      machine_type = "T2D General-purpose";
+      commitment_type = "General purpose T2D commitments";
+      break;
+    case "e2":
+      machine_type = shared_core ? "E2 shared-core" : "E2 General-purpose";
+      commitment_type = "General purpose E2 commitments";
+      break;
+    case "c2":
+      machine_type = "C2 Compute-optimized";
+      commitment_type = "Compute-optimized C2 commitments";
+      break;
+    case "c2d":
+      machine_type = "C2D Compute-optimized";
+      commitment_type = "Compute-optimized C2D commitments";
+      break;
+    case "c3":
+      machine_type = "C3 General-purpose";
+      commitment_type = "General purpose C3 commitments";
+      break;
+    case "m1":
+      machine_type = `M1 Memory-optimized ${machine_spec_memory_suffix(machine_spec)}`;
+      commitment_type = "Memory-optimzed M1/M2 commitments";
+      break;
+    case "m2":
+      machine_type = `M2 Memory-optimized ${machine_spec_memory_suffix(machine_spec)}`;
+      commitment_type = "Memory-optimzed M1/M2 commitments";
+      break;
+    case "m3":
+      machine_type = `M3 Memory-optimized ${machine_spec_memory_suffix(machine_spec)}`;
+      commitment_type = "Memory-optimized M3 commitments";
+      break;
+    case "a2":
+      machine_type = `A2 Accelerator-optimized ${machine_spec_memory_suffix(machine_spec)}`;
+      commitment_type = "Accelerator-optimized A2 commitments";
+      break;
+    case "g2":
+      machine_type = "G2 Accelerator-optimized";
+      commitment_type = "Accelerator-optimized G2 commitments";
+      break;
+    default:
+  }
+
+  if (is_commitment && spend_based_regexp.test(sku_description)) {
+    commit_eligible = spend_based_commitment;
+  }
+
+  const labels = [
+    {
+      key: "cmp/eligible_for_commitment",
+      value: commit_eligible.toString(),
+    },
+    {
+      key: "cmp/compute_resource_name",
+      value: resource_name,
+    },
+  ];
+
+  if (commit_eligible === true || commit_eligible === utilized_commitment) {
+    let flexsave_eligibility = "flexsave_eligible_uncovered";
+
+    if (is_commitment) {
+      if (cost_type === "regular") {
+        flexsave_eligibility = "flexsave_eligible_customer_covered";
+      } else if (cost_type === "Flexsave") {
+        flexsave_eligibility = "flexsave_eligible_covered";
+      }
+    }
+
+    labels.push({
+      key: "cmp/flexsave_eligibility",
+      value: flexsave_eligibility,
+    });
+  }
+
+  // No machine spec usually means that this row is unutilized commitments
+  if (machine_spec) {
+    labels.push({
+      key: "cmp/machine_type",
+      value: machine_type,
+    });
+  }
+
+  // If row is not commit eligible then there is no commitment type
+  if (commit_eligible) {
+    labels.push({
+      key: "cmp/commitment_type",
+      value: commitment_type,
+    });
+  }
+
+  const cores = parseInt(values[compute_sl_prefix + "/cores"]);
+  const memory = parseInt(values[compute_sl_prefix + "/memory"]);
+  if (cores > 0 && memory > 0) {
+    const round = (n) => Math.round((n + Number.EPSILON) * 1000) / 1000;
+    labels.push({
+      key: "cmp/memory_to_core_ratio",
+      value: round(memory / (cores * 1024)).toString(),
+    });
+  }
+
+  return system_labels.concat(labels);
+} catch (error) {
+  return system_labels;
+}
+""";

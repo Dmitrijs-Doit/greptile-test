@@ -1,0 +1,32 @@
+{
+  "dimensions": [
+    {
+      "time": [
+        { "name": "total",  "label": "Total", "populated": false, "excluded": false, "direct": false, "parent": 0 },
+        { "name": "2025-02-02 00:00", "populated": true, "excluded": false, "direct": false, "parent": -1 },
+        { "name": "2025-02-02 01:00", "populated": true, "excluded": false, "direct": false, "parent": -1 },
+        { "name": "2025-02-02 02:00", "populated": true, "excluded": false, "direct": false, "parent": -1 },
+        { "name": "2025-02-02 11:00", "populated": true, "excluded": false, "direct": false, "parent": -1 },
+        { "name": "2025-02-03 00:00", "populated": true, "excluded": false, "direct": false, "parent": -1 },
+        { "name": "2025-02-03 01:00", "populated": true, "excluded": false, "direct": false, "parent": -1 },
+        { "name": "2025-02-03 02:00", "populated": true, "excluded": false, "direct": false, "parent": -1 },
+        { "name": "2025-02-03 11:00", "populated": true, "excluded": false, "direct": false, "parent": -1 },
+        { "name": "2025-02-04 15:00", "populated": true, "excluded": false, "direct": false, "parent": -1 }
+      ]
+    }
+  ],
+  "data": [
+  ],
+  "interval": "hourly",
+  "status": "ok",
+  "measures": [
+    {
+      "name": "nf_instances",
+      "label": "Normalized Usage (NFU)",
+      "metadata": {
+        "units": "",
+        "scale": ""
+      }
+    }
+  ]
+}

@@ -1,0 +1,71 @@
+{
+  "ID": "t0pluMrEdUPR6eCQjDBa",
+  "accountManager": {
+    "Parent": {
+      "Parent": null,
+      "Path": "projects/cmp-spot-scaling-dev/databases/(default)/documents/accountManagers",
+      "ID": "accountManagers"
+    },
+    "Path": "projects/cmp-spot-scaling-dev/databases/(default)/documents/accountManagers/fIivutqMXgDL20VVjBtb",
+    "ID": "fIivutqMXgDL20VVjBtb"
+  },
+  "active": true,
+  "assets": [],
+  "commitmentPeriods": [
+    {
+      "discount": 9,
+      "endDate": "2026-08-24T00:00:00Z",
+      "startDate": "2023-08-24T00:00:00Z",
+      "value": 1
+    }
+  ],
+  "commitmentRollover": false,
+  "contractFile": {
+    "id": "1KFBcpoQbFJNAUHKrDfRAM4aDYWVjBI9U",
+    "name": "230823 (signed) - Docmorris GCP Commitment _.docx.pdf",
+    "parentId": "1qaN0jrjm5LUQvFPYAi45POkPXNDHNT5P",
+    "storage": "IAkNVNqQ8j6MIzPfKqwa/t0pluMrEdUPR6eCQjDBa.pdf",
+    "url": "https://drive.google.com/file/d/1KFBcpoQbFJNAUHKrDfRAM4aDYWVjBI9U/view?usp=drive_web"
+  },
+  "customer": {
+    "Parent": {
+      "Parent": null,
+      "Path": "projects/cmp-spot-scaling-dev/databases/(default)/documents/customers",
+      "ID": "customers"
+    },
+    "Path": "projects/cmp-spot-scaling-dev/databases/(default)/documents/customers/IAkNVNqQ8j6MIzPfKqwa",
+    "ID": "IAkNVNqQ8j6MIzPfKqwa"
+  },
+  "discount": 9,
+  "endDate": "2026-08-24T00:00:00Z",
+  "entity": {
+    "Parent": {
+      "Parent": null,
+      "Path": "projects/cmp-spot-scaling-dev/databases/(default)/documents/entities",
+      "ID": "entities"
+    },
+    "Path": "projects/cmp-spot-scaling-dev/databases/(default)/documents/entities/FE0H4GqIoS9F1GNHTh2g",
+    "ID": "FE0H4GqIoS9F1GNHTh2g"
+  },
+  "estimatedValue": 1,
+  "isCommitment": true,
+  "isRenewal": false,
+  "isSoftCommitment": false,
+  "notes": "",
+  "partnerMargin": 0,
+  "properties": {
+    "discountPreemptible": false,
+    "gcpFlexSaveOverwrite": 100,
+    "pricelistSheet": null,
+    "rebaseModifier": 0
+  },
+  "purchaseOrder": "",
+  "startDate": "2023-08-24T00:00:00Z",
+  "timeCreated": "2023-09-29T16:34:24.621Z",
+  "timestamp": "2023-09-29T16:34:24.937Z",
+  "type": "google-cloud",
+  "updatedBy": {
+    "email": "hannah.king@doit.com",
+    "name": "Hannah King"
+  }
+}

@@ -1,0 +1,17 @@
+[
+  [null, null, "cmp-aws-etl-prod", "2023", "02", 13169, 5773875, 0],
+  [null, null, "me-doit-intl-com", "2023", "02", 7269, 3561752736, 0],
+  [null, null, "reoptimize-io", "2023", "02", 49391, 302920, 0],
+  ["gigabright", "gigabright", "cmp-aws-etl-dev", "2023", "02", 2257, 1521812, 0],
+  ["gigabright", "gigabright", "cmp-aws-etl-prod", "2023", "02", 5356, 252273479, 0],
+  ["gigabright", "gigabright", "me-doit-intl-com", "2023", "02", 3236, 31809290, 0],
+  ["turing", "turing", "cmp-flexsave", "2023", "02", 2, 963, 0],
+  ["turing", "turing", "doitintl-cmp-flexsave-aws-dev", "2023", "02", 4, 143277, 0],
+  ["turing", "turing", "doitintl-cmp-flexsave-aws-prod", "2023", "02", 351, 3182580, 0],
+  ["gigabright", "bruteforce", "billing-explorer", "2023", "02", 637.0374799214707, 24549.044321890786, 0],
+  ["turing", "bruteforce", "billing-explorer", "2023", "02", 20.962520078529362, 285.9556781092132, 0],
+  ["gigabright", "bruteforce", "cmp-bruteforce", "2023", "02", 2.9044262002498664, 1654.7251940747, 0],
+  ["turing", "bruteforce", "cmp-bruteforce", "2023", "02", 0.09557379975013386, 19.274805925299894, 0],
+  ["gigabright", "bruteforce", "doitintl-cmp-gcp-data", "2023", "02", 84.22835980724612, 6726.645726211669, 0],
+  ["turing", "bruteforce", "doitintl-cmp-gcp-data", "2023", "02", 2.7716401927538823, 78.35427378833081, 0]
+]
